@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const PORT = 8765;
+const PORT = process.env.PORT || 8765;
 const ROOT = path.join(__dirname);
 const CONTENT_FILE = path.join(ROOT, 'site', 'content.json');
 const ADMIN_PASSWORD = 'oumaima2026'; // ← Changez ce mot de passe !
