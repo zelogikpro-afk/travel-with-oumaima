@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Travel with Oumaima</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #1F2B22; --copper: #B87333; --beige: #D9C3A3;
+      --ivory: #F7F1E8; --white: #fff;
+      --sidebar-w: 260px;
+      --success: #2ecc71; --danger: #e74c3c; --warn: #f39c12;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: #f0ede8; color: #333; min-height: 100vh; }
+
+    /* LOGIN */
+    #login-screen {
+      position: fixed; inset: 0; background: var(--forest);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+      flex-direction: column; gap: 32px;
+    }
+    #login-screen.hidden { display: none; }
+    .login-box {
+      background: white; border-radius: 20px; padding: 48px 40px;
+      width: 360px; box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .login-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--copper); margin-bottom: 4px; }
+    .login-brand { font-size: 1.8rem; font-weight: 600; color: var(--forest); margin-bottom: 32px; }
+    .login-box input {
+      width: 100%; padding: 14px 18px; border: 1.5px solid #ddd;
+      border-radius: 10px; font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem; outline: none; transition: border-color 0.3s;
+      margin-bottom: 16px;
+    }
+    .login-box input:focus { border-color: var(--copper); }
+    .login-btn {
+      width: 100%; padding: 14px; background: var(--copper); color: white;
+      border: none; border-radius: 10px; font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+    }
+    .login-btn:hover { background: var(--forest); }
+    .login-error { color: var(--danger); font-size: 0.8rem; margin-top: 12px; }
+
+    /* LAYOUT */
+    #app { display: flex; min-height: 100vh; }
+    #app.hidden { display: none; }
+
+    /* SIDEBAR */
+    aside {
+      width: var(--sidebar-w); background: var(--forest); position: fixed;
+      top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 100;
+      display: flex; flex-direction: column;
+    }
+    .sidebar-header { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--copper); }
+    .sidebar-title { font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+    nav { padding: 20px 12px; flex: 1; }
+    .nav-section { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25); padding: 0 12px; margin: 20px 0 8px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 12px; padding: 11px 14px;
+      border-radius: 10px; color: rgba(255,255,255,0.6); font-size: 0.82rem;
+      cursor: pointer; transition: all 0.2s; margin-bottom: 2px;
+      text-decoration: none;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
+    .nav-item.active { background: var(--copper); color: white; }
+    .nav-item .icon { font-size: 1.1rem; width: 20px; text-align: center; }
+    .sidebar-footer { padding: 16px 12px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .logout-btn {
+      width: 100%; padding: 10px; background: rgba(231,76,60,0.15);
+      color: #e74c3c; border: 1px solid rgba(231,76,60,0.3); border-radius: 8px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .logout-btn:hover { background: #e74c3c; color: white; }
+
+    /* MAIN */
+    main { margin-left: var(--sidebar-w); flex: 1; padding: 0; }
+
+    /* TOPBAR */
+    .topbar {
+      background: white; padding: 16px 32px; display: flex; align-items: center;
+      justify-content: space-between; box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .topbar h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--forest); }
+    .topbar-actions { display: flex; gap: 12px; align-items: center; }
+    .view-site-btn {
+      padding: 9px 18px; background: var(--forest); color: white; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.3s;
+    }
+    .view-site-btn:hover { background: var(--copper); }
+
+    /* TOAST */
+    #toast {
+      position: fixed; bottom: 32px; right: 32px; z-index: 9999;
+      background: var(--forest); color: white; padding: 14px 24px;
+      border-radius: 12px; font-size: 0.85rem; font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(80px);
+      opacity: 0; transition: all 0.4s; max-width: 320px;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.success { border-left: 4px solid var(--success); }
+    #toast.error { border-left: 4px solid var(--danger); }
+
+    /* PANELS */
+    .panel { display: none; padding: 32px; }
+    .panel.active { display: block; }
+
+    /* CARDS */
+    .card {
+      background: white; border-radius: 16px; padding: 28px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 24px;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+      color: var(--forest); margin-bottom: 24px; padding-bottom: 16px;
+      border-bottom: 1px solid #f0ede8; display: flex; align-items: center; gap: 10px;
+    }
+
+    /* FORM ELEMENTS */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #888; }
+    input[type="text"], input[type="email"], input[type="number"], input[type="tel"],
+    input[type="date"], textarea, select {
+      padding: 11px 14px; border: 1.5px solid #e8e5e0; border-radius: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.88rem; outline: none;
+      transition: border-color 0.3s; background: #fafaf9; color: #333; resize: vertical;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--copper); background: white; }
+    textarea { min-height: 90px; line-height: 1.6; }
+
+    /* SAVE BUTTON */
+    .save-btn {
+      padding: 12px 28px; background: var(--copper); color: white;
+      border: none; border-radius: 10px; font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .save-btn:hover { background: var(--forest); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184,115,51,0.3); }
+    .save-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* DEPARTURE CARDS */
+    .dep-list { display: flex; flex-direction: column; gap: 16px; }
+    .dep-item {
+      background: #fafaf9; border: 1.5px solid #e8e5e0; border-radius: 14px;
+      overflow: hidden; transition: border-color 0.3s;
+    }
+    .dep-item:hover { border-color: var(--copper); }
+    .dep-item-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; cursor: pointer; background: white;
+      border-bottom: 1px solid #f0ede8;
+    }
+    .dep-item-header .dep-title-wrap { display: flex; align-items: center; gap: 12px; }
+    .dep-num {
+      width: 32px; height: 32px; border-radius: 8px; background: var(--copper);
+      color: white; font-size: 0.8rem; font-weight: 700; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .dep-name { font-weight: 600; color: var(--forest); font-size: 0.9rem; }
+    .dep-meta { font-size: 0.75rem; color: #999; margin-top: 2px; }
+    .dep-actions { display: flex; gap: 8px; align-items: center; }
+    .toggle-visible {
+      padding: 5px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.2s;
+    }
+    .toggle-visible.on { background: rgba(46,204,113,0.1); color: var(--success); }
+    .toggle-visible.off { background: rgba(231,76,60,0.1); color: var(--danger); }
+    .dep-expand { font-size: 1.1rem; color: #bbb; transition: transform 0.3s; cursor: pointer; background: none; border: none; }
+    .dep-expand.open { transform: rotate(180deg); }
+    .dep-body { padding: 20px; display: none; }
+    .dep-body.open { display: block; }
+    .add-dep-btn {
+      width: 100%; padding: 14px; background: rgba(31,43,34,0.04);
+      border: 2px dashed rgba(31,43,34,0.15); border-radius: 12px;
+      color: var(--forest); font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.3s;
+      margin-top: 12px;
+    }
+    .add-dep-btn:hover { background: rgba(184,115,51,0.06); border-color: var(--copper); color: var(--copper); }
+    .delete-dep-btn {
+      padding: 5px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;
+      cursor: pointer; border: none; background: rgba(231,76,60,0.08); color: var(--danger);
+      transition: all 0.2s;
+    }
+    .delete-dep-btn:hover { background: var(--danger); color: white; }
+
+    /* STATS BAR */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+    .stat-card { background: white; border-radius: 14px; padding: 20px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--copper); font-weight: 300; }
+    .stat-label { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+
+    /* COLOR INPUT */
+    .color-wrap { display: flex; gap: 8px; align-items: center; }
+    .color-wrap input[type="color"] { width: 40px; height: 38px; padding: 2px; border-radius: 8px; cursor: pointer; border: 1.5px solid #e8e5e0; }
+    .color-wrap input[type="text"] { flex: 1; }
+
+    /* IMAGE PREVIEW */
+    .img-preview { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-top: 8px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      aside { transform: translateX(-100%); }
+      main { margin-left: 0; }
+      .form-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Travel with</div>
+    <div class="login-brand">Admin Panel</div>
+    <input type="password" id="pwd-input" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Se connecter</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-header">
+      <div class="sidebar-logo">Travel with Oumaima</div>
+      <div class="sidebar-title">Panneau d'administration</div>
+    </div>
+    <nav>
+      <div class="nav-section">Tableau de bord</div>
+      <div class="nav-item active" onclick="showPanel('dashboard')">
+        <span class="icon">📊</span> Vue d'ensemble
+      </div>
+
+      <div class="nav-section">Contenu du site</div>
+      <div class="nav-item" onclick="showPanel('hero')">
+        <span class="icon">🖼️</span> Hero & Accueil
+      </div>
+      <div class="nav-item" onclick="showPanel('philosophy')">
+        <span class="icon">💚</span> Notre Philosophie
+      </div>
+      <div class="nav-item" onclick="showPanel('departures')">
+        <span class="icon">🗓️</span> Prochains Départs
+      </div>
+      <div class="nav-item" onclick="showPanel('contact')">
+        <span class="icon">📞</span> Contact & Réseaux
+      </div>
+      <div class="nav-item" onclick="showPanel('seo')">
+        <span class="icon">🔍</span> SEO & Méta
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">⬅ Se déconnecter</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="topbar">
+      <h1 id="panel-title">Vue d'ensemble</h1>
+      <div class="topbar-actions">
+        <a href="/site/" target="_blank" class="view-site-btn">👁 Voir le site</a>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="stats-bar">
+        <div class="stat-card">
+          <div class="stat-num" id="stat-deps">3</div>
+          <div class="stat-label">Départs actifs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Destinations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Women Only</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">✓</div>
+          <div class="stat-label">Site en ligne</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🚀 Actions rapides</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <button onclick="showPanel('departures')" style="padding:20px;background:#f7f1e8;border:none;border-radius:12px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:0.85rem;font-weight:600;color:#1F2B22;transition:all 0.2s;" onmouseover="this.style.background='#B87333';this.style.color='white'" onmouseout="this.style.background='#f7f1e8';this.style.color='#1F2B22'">
+            ➕ Ajouter un départ
+          </button>
+          <button onclick="showPanel('hero')" style="padding:20px;background:#f7f1e8;border:none;border-radius:12px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:0.85rem;font-weight:600;color:#1F2B22;transition:all 0.2s;" onmouseover="this.style.background='#B87333';this.style.color='white'" onmouseout="this.style.background='#f7f1e8';this.style.color='#1F2B22'">
+            ✏️ Modifier le Hero
+          </button>
+          <button onclick="showPanel('contact')" style="padding:20px;background:#f7f1e8;border:none;border-radius:12px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:0.85rem;font-weight:600;color:#1F2B22;transition:all 0.2s;" onmouseover="this.style.background='#B87333';this.style.color='white'" onmouseout="this.style.background='#f7f1e8';this.style.color='#1F2B22'">
+            📞 Mettre à jour contacts
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💡 Guide rapide</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="padding:16px;background:#f7f1e8;border-radius:12px;">
+            <div style="font-weight:600;color:#1F2B22;margin-bottom:8px;">📝 Modifier le texte</div>
+            <div style="font-size:0.82rem;color:#666;line-height:1.6;">Allez dans la section souhaitée (Hero, Philosophie...), modifiez les champs et cliquez sur <strong>Enregistrer</strong>.</div>
+          </div>
+          <div style="padding:16px;background:#f7f1e8;border-radius:12px;">
+            <div style="font-weight:600;color:#1F2B22;margin-bottom:8px;">🗓️ Gérer les départs</div>
+            <div style="font-size:0.82rem;color:#666;line-height:1.6;">Dans <strong>Prochains Départs</strong>, ajoutez, modifiez ou masquez des événements en un clic.</div>
+          </div>
+          <div style="padding:16px;background:#f7f1e8;border-radius:12px;">
+            <div style="font-weight:600;color:#1F2B22;margin-bottom:8px;">👁 Voir les changements</div>
+            <div style="font-size:0.82rem;color:#666;line-height:1.6;">Après avoir enregistré, cliquez sur <strong>"Voir le site"</strong> en haut à droite et rafraîchissez la page.</div>
+          </div>
+          <div style="padding:16px;background:#f7f1e8;border-radius:12px;">
+            <div style="font-weight:600;color:#1F2B22;margin-bottom:8px;">🔒 Sécurité</div>
+            <div style="font-size:0.82rem;color:#666;line-height:1.6;">Mot de passe actuel : <strong>oumaima2026</strong>. Modifiable dans <code>server.js</code>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="panel" id="panel-hero">
+      <div class="card">
+        <div class="card-title">🖼️ Section Hero — Accueil</div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Badge (ex: 🌿 100% Women Only · Maroc)</label>
+            <input type="text" id="hero-badge">
+          </div>
+          <div class="form-group full">
+            <label>Sous-titre (texte sous le logo)</label>
+            <textarea id="hero-subtitle" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Bouton principal — Texte</label>
+            <input type="text" id="hero-cta1-text">
+          </div>
+          <div class="form-group">
+            <label>Bouton principal — Lien</label>
+            <input type="text" id="hero-cta1-link" placeholder="#experiences">
+          </div>
+          <div class="form-group">
+            <label>Bouton secondaire — Texte</label>
+            <input type="text" id="hero-cta2-text">
+          </div>
+          <div class="form-group">
+            <label>Bouton secondaire — Lien</label>
+            <input type="text" id="hero-cta2-link" placeholder="#departures">
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <button class="save-btn" onclick="saveSection('hero')">💾 Enregistrer le Hero</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHILOSOPHY -->
+    <div class="panel" id="panel-philosophy">
+      <div class="card">
+        <div class="card-title">💚 Notre Philosophie</div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Titre</label>
+            <input type="text" id="phil-title">
+          </div>
+          <div class="form-group full">
+            <label>Paragraphe 1</label>
+            <textarea id="phil-text1" rows="4"></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Paragraphe 2</label>
+            <textarea id="phil-text2" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Stat 1 — Chiffre (ex: 200+)</label>
+            <input type="text" id="phil-stat1-num">
+          </div>
+          <div class="form-group">
+            <label>Stat 1 — Label</label>
+            <input type="text" id="phil-stat1-label">
+          </div>
+          <div class="form-group">
+            <label>Stat 2 — Chiffre</label>
+            <input type="text" id="phil-stat2-num">
+          </div>
+          <div class="form-group">
+            <label>Stat 2 — Label</label>
+            <input type="text" id="phil-stat2-label">
+          </div>
+          <div class="form-group">
+            <label>Stat 3 — Chiffre</label>
+            <input type="text" id="phil-stat3-num">
+          </div>
+          <div class="form-group">
+            <label>Stat 3 — Label</label>
+            <input type="text" id="phil-stat3-label">
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <button class="save-btn" onclick="saveSection('philosophy')">💾 Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPARTURES -->
+    <div class="panel" id="panel-departures">
+      <div class="card">
+        <div class="card-title">🗓️ Prochains Départs</div>
+        <div class="dep-list" id="dep-list"></div>
+        <button class="add-dep-btn" onclick="addDeparture()">➕ Ajouter un nouveau départ</button>
+        <div style="margin-top:24px;">
+          <button class="save-btn" onclick="saveDepartures()">💾 Enregistrer tous les départs</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="panel" id="panel-contact">
+      <div class="card">
+        <div class="card-title">📞 Contact & Réseaux sociaux</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>WhatsApp (numéro sans +)</label>
+            <input type="text" id="contact-whatsapp" placeholder="212600000000">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="contact-email">
+          </div>
+          <div class="form-group">
+            <label>Instagram (nom d'utilisateur)</label>
+            <input type="text" id="contact-instagram" placeholder="travel_with_oumaima">
+          </div>
+          <div class="form-group">
+            <label>Facebook (URL ou nom)</label>
+            <input type="text" id="contact-facebook">
+          </div>
+          <div class="form-group">
+            <label>TikTok (nom d'utilisateur)</label>
+            <input type="text" id="contact-tiktok">
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <button class="save-btn" onclick="saveSection('contact')">💾 Enregistrer les contacts</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO -->
+    <div class="panel" id="panel-seo">
+      <div class="card">
+        <div class="card-title">🔍 SEO & Référencement</div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Titre de la page (title)</label>
+            <input type="text" id="seo-title">
+          </div>
+          <div class="form-group full">
+            <label>Description (meta description)</label>
+            <textarea id="seo-description" rows="3"></textarea>
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <button class="save-btn" onclick="saveSection('seo')">💾 Enregistrer le SEO</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────
+let content = {};
+let currentPanel = 'dashboard';
+
+// ── TOAST ──────────────────────────────────────────────────────
+function toast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = (type === 'success' ? '✅ ' : '❌ ') + msg;
+  t.className = 'show ' + type;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.className = '', 3200);
+}
+
+// ── AUTH ───────────────────────────────────────────────────────
+async function login() {
+  const pwd = document.getElementById('pwd-input').value;
+  const err = document.getElementById('login-error');
+  err.textContent = '';
+  try {
+    const r = await fetch('/api/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({password: pwd}) });
+    const data = await r.json();
+    if (data.ok) {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
+      await loadContent();
+    } else {
+      err.textContent = data.error || 'Mot de passe incorrect';
+    }
+  } catch(e) { err.textContent = 'Erreur de connexion au serveur'; }
+}
+
+async function logout() {
+  await fetch('/api/logout', { method: 'POST' });
+  document.getElementById('login-screen').classList.remove('hidden');
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('pwd-input').value = '';
+}
+
+// Check if already logged in
+(async () => {
+  try {
+    const r = await fetch('/api/auth');
+    const d = await r.json();
+    if (d.authenticated) {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
+      await loadContent();
+    }
+  } catch(e) {}
+})();
+
+// ── NAVIGATION ─────────────────────────────────────────────────
+const panelTitles = {
+  dashboard: 'Vue d\'ensemble', hero: 'Hero & Accueil',
+  philosophy: 'Notre Philosophie', departures: 'Prochains Départs',
+  contact: 'Contact & Réseaux', seo: 'SEO & Méta'
+};
+
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick')?.includes("'" + id + "'")) n.classList.add('active');
+  });
+  document.getElementById('panel-title').textContent = panelTitles[id] || id;
+  currentPanel = id;
+}
+
+// ── LOAD CONTENT ───────────────────────────────────────────────
+async function loadContent() {
+  try {
+    const r = await fetch('/api/content?t=' + Date.now());
+    content = await r.json();
+    populateForms();
+    renderDepartures();
+    updateStats();
+  } catch(e) { toast('Erreur chargement contenu', 'error'); }
+}
+
+function populateForms() {
+  const h = content.hero || {};
+  setVal('hero-badge', h.badge);
+  setVal('hero-subtitle', h.subtitle);
+  setVal('hero-cta1-text', h.cta1_text);
+  setVal('hero-cta1-link', h.cta1_link);
+  setVal('hero-cta2-text', h.cta2_text);
+  setVal('hero-cta2-link', h.cta2_link);
+
+  const p = content.philosophy || {};
+  setVal('phil-title', p.title);
+  setVal('phil-text1', p.text1);
+  setVal('phil-text2', p.text2);
+  setVal('phil-stat1-num', p.stat1_num); setVal('phil-stat1-label', p.stat1_label);
+  setVal('phil-stat2-num', p.stat2_num); setVal('phil-stat2-label', p.stat2_label);
+  setVal('phil-stat3-num', p.stat3_num); setVal('phil-stat3-label', p.stat3_label);
+
+  const c = content.contact || {};
+  setVal('contact-whatsapp', c.whatsapp);
+  setVal('contact-email', c.email);
+  setVal('contact-instagram', c.instagram);
+  setVal('contact-facebook', c.facebook);
+  setVal('contact-tiktok', c.tiktok);
+
+  const s = content.seo || {};
+  setVal('seo-title', s.title);
+  setVal('seo-description', s.description);
+}
+
+function setVal(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.value = val || '';
+}
+
+function updateStats() {
+  const deps = (content.departures || []).filter(d => d.visible !== false);
+  document.getElementById('stat-deps').textContent = deps.length;
+}
+
+// ── DEPARTURES ─────────────────────────────────────────────────
+function renderDepartures() {
+  const list = document.getElementById('dep-list');
+  const deps = content.departures || [];
+  list.innerHTML = deps.map((dep, i) => `
+    <div class="dep-item" id="dep-${i}">
+      <div class="dep-item-header" onclick="toggleDep(${i})">
+        <div class="dep-title-wrap">
+          <div class="dep-num">${i + 1}</div>
+          <div>
+            <div class="dep-name">${dep.title || 'Nouveau départ'}</div>
+            <div class="dep-meta">${dep.date || ''} · ${dep.duration || ''} · ${dep.price || ''}${dep.currency || 'MAD'}</div>
+          </div>
+        </div>
+        <div class="dep-actions" onclick="event.stopPropagation()">
+          <button class="toggle-visible ${dep.visible !== false ? 'on' : 'off'}" onclick="toggleVisible(${i})">
+            ${dep.visible !== false ? '👁 Visible' : '🙈 Masqué'}
+          </button>
+          <button class="delete-dep-btn" onclick="deleteDep(${i})">🗑 Supprimer</button>
+          <button class="dep-expand" id="arrow-${i}">▼</button>
+        </div>
+      </div>
+      <div class="dep-body" id="body-${i}">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Titre</label>
+            <input type="text" id="dep-${i}-title" value="${esc(dep.title)}">
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="text" id="dep-${i}-date" value="${esc(dep.date)}" placeholder="15 Juillet 2026">
+          </div>
+          <div class="form-group">
+            <label>Durée</label>
+            <input type="text" id="dep-${i}-duration" value="${esc(dep.duration)}" placeholder="3 jours">
+          </div>
+          <div class="form-group">
+            <label>Prix</label>
+            <input type="text" id="dep-${i}-price" value="${esc(dep.price)}" placeholder="850">
+          </div>
+          <div class="form-group">
+            <label>Devise</label>
+            <input type="text" id="dep-${i}-currency" value="${esc(dep.currency || 'MAD')}">
+          </div>
+          <div class="form-group full">
+            <label>Note prix</label>
+            <input type="text" id="dep-${i}-price_note" value="${esc(dep.price_note)}" placeholder="par personne · tout compris">
+          </div>
+          <div class="form-group">
+            <label>Badge places (ex: 3 places restantes)</label>
+            <input type="text" id="dep-${i}-spots" value="${esc(dep.spots)}">
+          </div>
+          <div class="form-group">
+            <label>Urgence (ex: 🔥 Presque complet)</label>
+            <input type="text" id="dep-${i}-spots_urgency" value="${esc(dep.spots_urgency)}">
+          </div>
+          <div class="form-group full">
+            <label>Description</label>
+            <textarea id="dep-${i}-description" rows="3">${esc(dep.description)}</textarea>
+          </div>
+          <div class="form-group full">
+            <label>Chemin de l'image (ex: images/merzouga/IMG-...jpg)</label>
+            <input type="text" id="dep-${i}-image" value="${esc(dep.image)}">
+            ${dep.image ? `<img src="${esc(dep.image)}" class="img-preview" onerror="this.style.display='none'">` : ''}
+          </div>
+          <div class="form-group">
+            <label>Numéro WhatsApp (sans +)</label>
+            <input type="text" id="dep-${i}-whatsapp" value="${esc(dep.whatsapp)}">
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function esc(str) {
+  return (str || '').toString().replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function toggleDep(i) {
+  const body = document.getElementById('body-' + i);
+  const arrow = document.getElementById('arrow-' + i);
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+function toggleVisible(i) {
+  content.departures[i].visible = content.departures[i].visible === false ? true : false;
+  renderDepartures();
+  updateStats();
+}
+
+function deleteDep(i) {
+  if (!confirm('Supprimer ce départ ?')) return;
+  content.departures.splice(i, 1);
+  renderDepartures();
+  updateStats();
+}
+
+function addDeparture() {
+  if (!content.departures) content.departures = [];
+  content.departures.push({
+    id: Date.now(), title: 'Nouveau départ', date: '', duration: '', price: '',
+    currency: 'MAD', price_note: 'par personne', spots: '', spots_urgency: '',
+    description: '', image: '', whatsapp: content.contact?.whatsapp || '', visible: true
+  });
+  renderDepartures();
+  // Auto-open last
+  const last = content.departures.length - 1;
+  setTimeout(() => toggleDep(last), 100);
+}
+
+function collectDeps() {
+  return (content.departures || []).map((dep, i) => {
+    const fields = ['title','date','duration','price','currency','price_note','spots','spots_urgency','description','image','whatsapp'];
+    const updated = { ...dep };
+    fields.forEach(f => {
+      const el = document.getElementById(`dep-${i}-${f}`);
+      if (el) updated[f] = el.value;
+    });
+    return updated;
+  });
+}
+
+async function saveDepartures() {
+  content.departures = collectDeps();
+  await saveAll('Départs enregistrés !');
+  updateStats();
+}
+
+// ── SAVE ───────────────────────────────────────────────────────
+async function saveSection(section) {
+  // Collect values for the section
+  if (section === 'hero') {
+    content.hero = {
+      badge: document.getElementById('hero-badge').value,
+      subtitle: document.getElementById('hero-subtitle').value,
+      cta1_text: document.getElementById('hero-cta1-text').value,
+      cta1_link: document.getElementById('hero-cta1-link').value,
+      cta2_text: document.getElementById('hero-cta2-text').value,
+      cta2_link: document.getElementById('hero-cta2-link').value,
+    };
+  } else if (section === 'philosophy') {
+    content.philosophy = {
+      title: document.getElementById('phil-title').value,
+      text1: document.getElementById('phil-text1').value,
+      text2: document.getElementById('phil-text2').value,
+      stat1_num: document.getElementById('phil-stat1-num').value,
+      stat1_label: document.getElementById('phil-stat1-label').value,
+      stat2_num: document.getElementById('phil-stat2-num').value,
+      stat2_label: document.getElementById('phil-stat2-label').value,
+      stat3_num: document.getElementById('phil-stat3-num').value,
+      stat3_label: document.getElementById('phil-stat3-label').value,
+    };
+  } else if (section === 'contact') {
+    content.contact = {
+      whatsapp: document.getElementById('contact-whatsapp').value,
+      email: document.getElementById('contact-email').value,
+      instagram: document.getElementById('contact-instagram').value,
+      facebook: document.getElementById('contact-facebook').value,
+      tiktok: document.getElementById('contact-tiktok').value,
+    };
+  } else if (section === 'seo') {
+    content.seo = {
+      title: document.getElementById('seo-title').value,
+      description: document.getElementById('seo-description').value,
+    };
+  }
+  await saveAll('Modifications enregistrées !');
+}
+
+async function saveAll(msg = 'Enregistré !') {
+  try {
+    const btn = event?.target;
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Sauvegarde...'; }
+    const r = await fetch('/api/content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(content)
+    });
+    const d = await r.json();
+    if (btn) { btn.disabled = false; btn.textContent = '💾 Enregistrer'; }
+    if (d.ok) toast(msg, 'success');
+    else toast(d.error || 'Erreur', 'error');
+  } catch(e) { toast('Erreur réseau', 'error'); }
+}
+</script>
+</body>
+</html>

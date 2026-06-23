@@ -1,0 +1,12 @@
+{
+  "name": "travel-with-oumaima",
+  "version": "1.0.0",
+  "description": "Travel with Oumaima — Site web premium 100% féminin au Maroc",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

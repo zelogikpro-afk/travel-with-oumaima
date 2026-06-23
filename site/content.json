@@ -1,0 +1,82 @@
+{
+  "hero": {
+    "badge": "🌿 100% femmes · Maroc",
+    "subtitle": "",
+    "cta1_text": "Explorer les expériences",
+    "cta1_link": "#experiences",
+    "cta2_text": "Voir les prochains départs",
+    "cta2_link": "#departures"
+  },
+  "philosophy": {
+    "title": "Voyager, c'est se retrouver.",
+    "text1": "Chez Travel with Oumaima, nous croyons que voyager est bien plus qu'un déplacement. C'est une occasion de ralentir, de créer des liens profonds, de découvrir des paysages exceptionnels et de vivre une véritable transformation personnelle dans un cadre sécurisé et bienveillant.",
+    "text2": "Chaque sortie est conçue pour vous offrir un espace de liberté, de sororité et de reconnexion à vous-même — loin du quotidien, proche de l'essentiel.",
+    "stat1_num": "200+",
+    "stat1_label": "Aventurières",
+    "stat2_num": "15",
+    "stat2_label": "Destinations",
+    "stat3_num": "100%",
+    "stat3_label": "Women Only"
+  },
+  "departures": [
+    {
+      "id": 1,
+      "title": "Merzouga — Nuit sous les étoiles",
+      "date": "15 Juillet 2026",
+      "duration": "3 jours",
+      "price": "850",
+      "currency": "MAD",
+      "price_note": "par personne · tout compris",
+      "spots": "3 places restantes",
+      "spots_urgency": "🔥 Presque complet",
+      "badge_color": "#B87333",
+      "description": "Bivouac dans les dunes de l'Erg Chebbi. Balade en dromadaire au coucher du soleil, dîner berbère, nuit sous un ciel étoilé extraordinaire.",
+      "image": "images/merzouga/IMG-20260526-WA0086.jpg",
+      "whatsapp": "212600000000",
+      "visible": true
+    },
+    {
+      "id": 2,
+      "title": "Toubkal — Toit de l'Afrique du Nord",
+      "date": "2 Août 2026",
+      "duration": "2 jours",
+      "price": "1200",
+      "currency": "MAD",
+      "price_note": "par personne · guide inclus",
+      "spots": "5 places restantes",
+      "spots_urgency": "✨ Quelques places",
+      "badge_color": "#B87333",
+      "description": "Ascension du Jbel Toubkal (4 167m). Un défi accessible avec un guide expert, au cœur du Haut Atlas.",
+      "image": "images/toubkal/IMG-20260526-WA0130.jpg",
+      "whatsapp": "212600000000",
+      "visible": true
+    },
+    {
+      "id": 3,
+      "title": "Chefchaouen — La ville bleue",
+      "date": "20 Juillet 2026",
+      "duration": "1 journée",
+      "price": "350",
+      "currency": "MAD",
+      "price_note": "par personne · transport inclus",
+      "spots": "8 places",
+      "spots_urgency": "🟢 Places disponibles",
+      "badge_color": "#1F2B22",
+      "description": "Exploration de la médina bleue, randonnée vers la cascade Ras El Ma, repas traditionnel et séance photo au coucher du soleil.",
+      "image": "images/chefchaouen/IMG-20260526-WA0109.jpg",
+      "whatsapp": "212600000000",
+      "visible": true
+    }
+  ],
+  "contact": {
+    "whatsapp": "212600000000",
+    "instagram": "travel_with_oumaima",
+    "facebook": "",
+    "tiktok": "",
+    "email": "contact@travelwithoumaima.ma"
+  },
+  "seo": {
+    "title": "Travel with Oumaima — Expériences 100% Féminines au Maroc",
+    "description": "Des voyages organisés 100% femmes au Maroc. Sorties journée, randonnées, bivouac, parapente."
+  }
+}
