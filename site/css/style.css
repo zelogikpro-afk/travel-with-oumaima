@@ -6,12 +6,13 @@
 
 :root {
   --forest: #1F2B22;
-  --copper: #B87333;
-  --copper-light: #d4955a;
-  --beige: #D9C3A3;
-  --ivory: #F7F1E8;
+  --copper: #3DAA70;
+  --copper-light: #5CC48A;
+  --beige: #B2E0C9;
+  --ivory: #F0F8F4;
   --white: #ffffff;
-  --off-white: #FAFAF8;
+  --off-white: #F5FAF7;
+  --gradient-accent: linear-gradient(135deg, #1F4A30 0%, #3DAA70 100%);
   --text-dark: #111111;
   --text-mid: #555555;
   --text-light: #999999;
@@ -154,7 +155,7 @@ ul { list-style: none; }
 .loader-progress {
   position: absolute;
   inset: 0;
-  background: var(--copper);
+  background: var(--gradient-accent);
   animation: loaderFill 1.8s ease-out forwards;
   transform-origin: left;
 }
@@ -226,7 +227,7 @@ ul { list-style: none; }
   position: absolute;
   bottom: -4px; left: 0;
   width: 0; height: 1px;
-  background: var(--copper);
+  background: var(--gradient-accent);
   transition: width 0.35s var(--ease);
 }
 .nav-links a:hover::after { width: 100%; }
@@ -250,7 +251,7 @@ ul { list-style: none; }
   color: var(--copper);
 }
 .nav-cta .btn-outline:hover {
-  background: var(--copper);
+  background: var(--gradient-accent);
   border-color: var(--copper);
   color: white;
 }
@@ -372,7 +373,7 @@ ul { list-style: none; }
    ============================================================ */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--copper);
+  background: var(--gradient-accent);
   color: white;
   font-size: 0.68rem; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
@@ -409,11 +410,11 @@ ul { list-style: none; }
   padding: 14px 34px; border-radius: 50px;
   transition: all 0.4s var(--ease);
 }
-.btn-dark:hover { background: var(--copper); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-dark:hover { background: var(--gradient-accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
 .btn-copper {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--copper); color: white;
+  background: var(--gradient-accent); color: white;
   font-size: 0.68rem; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
   padding: 14px 34px; border-radius: 50px;
@@ -448,7 +449,7 @@ ul { list-style: none; }
 .section-header .t-body { max-width: 500px; margin: 20px auto 0; }
 .section-header .divider {
   width: 40px; height: 1px;
-  background: var(--copper);
+  background: var(--gradient-accent);
   margin: 24px auto 0;
 }
 
@@ -736,7 +737,7 @@ ul { list-style: none; }
   cursor: pointer; appearance: none; -webkit-appearance: none;
 }
 .search-submit {
-  background: var(--copper); color: white;
+  background: var(--gradient-accent); color: white;
   border-radius: 14px; padding: 16px 30px;
   font-size: 0.68rem; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
@@ -778,7 +779,7 @@ ul { list-style: none; }
 .dep-card:hover .dep-image img { transform: scale(1.06); }
 .dep-badge {
   position: absolute; top: 14px; right: 14px;
-  background: var(--copper); color: white;
+  background: var(--gradient-accent); color: white;
   font-size: 0.58rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 5px 12px; border-radius: 50px;
@@ -817,7 +818,7 @@ ul { list-style: none; }
   padding: 13px; border-radius: 12px;
   transition: all 0.3s;
 }
-.dep-btn:hover { background: var(--copper); }
+.dep-btn:hover { background: var(--gradient-accent); }
 
 /* ============================================================
    WHY CHOOSE US — now a dark strip (why-strip-section)
@@ -927,7 +928,7 @@ ul { list-style: none; }
   cursor: pointer; transition: all 0.3s;
   backdrop-filter: blur(8px);
 }
-.lightbox-nav:hover { background: var(--copper); border-color: var(--copper); }
+.lightbox-nav:hover { background: var(--gradient-accent); border-color: var(--copper); }
 .lightbox-prev { left: 24px; }
 .lightbox-next { right: 24px; }
 
@@ -1049,7 +1050,7 @@ ul { list-style: none; }
 /* ============================================================
    NEWSLETTER — copper band
    ============================================================ */
-#newsletter { background: var(--copper); padding: 100px 0; }
+#newsletter { background: var(--gradient-accent); padding: 100px 0; }
 .newsletter-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1137,7 +1138,7 @@ footer {
   color: rgba(255,255,255,0.4); font-size: 0.85rem;
   transition: all 0.3s; text-decoration: none;
 }
-.social-link:hover { background: var(--copper); border-color: var(--copper); color: white; }
+.social-link:hover { background: var(--gradient-accent); border-color: var(--copper); color: white; }
 .footer-col h4 {
   font-size: 0.62rem; font-weight: 700;
   letter-spacing: 0.22em; text-transform: uppercase;
@@ -1209,7 +1210,7 @@ footer {
 }
 .top-bar-social-link:hover { color: white; }
 .top-bar-social-wa {
-  background: var(--copper); color: white !important;
+  background: var(--gradient-accent); color: white !important;
   padding: 4px 14px; border-radius: 50px;
   font-weight: 600;
 }
@@ -1221,7 +1222,7 @@ footer {
 .btn-primary-hero {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 32px; border-radius: 50px;
-  background: var(--copper); color: white;
+  background: var(--gradient-accent); color: white;
   font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
   text-decoration: none; transition: all 0.3s;
   box-shadow: 0 8px 24px rgba(184,115,51,0.4);
@@ -1332,7 +1333,7 @@ footer {
   z-index: 2;
 }
 .dep-featured-badge {
-  background: var(--copper);
+  background: var(--gradient-accent);
   color: white;
   font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
   padding: 6px 14px; border-radius: 50px;
@@ -1424,7 +1425,7 @@ footer {
   box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 .dep-reserve-btn:hover {
-  background: var(--copper); color: white;
+  background: var(--gradient-accent); color: white;
   transform: scale(1.04);
   box-shadow: 0 6px 24px rgba(184,115,51,0.5);
 }
