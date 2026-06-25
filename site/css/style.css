@@ -1269,123 +1269,172 @@ footer {
 }
 
 /* ============================================================
-   DEPARTURE CARDS — STYLE BOOKING (MTExplore)
+   DEPARTURE CARDS — CINEMATIC FULL-IMAGE STYLE
    ============================================================ */
+#departures { background: #f4f1ec; }
+
 .dep-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 20px;
 }
+
+/* Full-image cinematic card */
 .dep-card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-  display: flex; flex-direction: column;
-}
-.dep-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.14);
-}
-.dep-card-featured {
-  grid-column: span 1;
-  border: 2px solid var(--copper);
-}
-.dep-card-img {
   position: relative;
-  aspect-ratio: 4/3;
+  border-radius: 20px;
   overflow: hidden;
-  background: var(--forest);
+  height: 480px;
+  cursor: pointer;
+  animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  animation-delay: var(--delay, 0s);
 }
-.dep-card-img img {
+.dep-card-featured { height: 520px; }
+
+/* Background image */
+.dep-card-bg {
+  position: absolute; inset: 0;
+}
+.dep-card-bg img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--ease);
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
 }
-.dep-card:hover .dep-card-img img { transform: scale(1.05); }
-.dep-card-img-overlay {
+.dep-card:hover .dep-card-bg img { transform: scale(1.08); }
+
+/* Multi-layer gradient for readability */
+.dep-card-gradient {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35) 100%);
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.0) 0%,
+      rgba(0,0,0,0.0) 30%,
+      rgba(0,0,0,0.55) 65%,
+      rgba(0,0,0,0.88) 100%),
+    linear-gradient(to top, transparent 80%, rgba(0,0,0,0.2) 100%);
+  transition: background 0.4s;
+}
+.dep-card:hover .dep-card-gradient {
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.0) 0%,
+      rgba(0,0,0,0.0) 20%,
+      rgba(0,0,0,0.65) 60%,
+      rgba(0,0,0,0.95) 100%),
+    linear-gradient(to top, transparent 80%, rgba(0,0,0,0.2) 100%);
+}
+
+/* Floating top badges */
+.dep-card-top {
+  position: absolute; top: 18px; left: 18px; right: 18px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  z-index: 2;
 }
 .dep-featured-badge {
-  position: absolute; top: 14px; left: 14px;
-  background: var(--copper); color: white;
-  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 50px;
+  background: var(--copper);
+  color: white;
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(184,115,51,0.5);
 }
 .dep-duration-chip {
-  position: absolute; top: 14px; right: 14px;
-  background: rgba(0,0,0,0.6); color: white;
-  font-size: 0.62rem; font-weight: 600;
-  padding: 5px 12px; border-radius: 50px;
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white;
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em;
+  padding: 6px 14px; border-radius: 50px;
 }
-.dep-urgency-chip {
-  position: absolute; bottom: 14px; left: 14px;
-  background: #e63946; color: white;
-  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
-  padding: 4px 10px; border-radius: 50px;
+
+/* Urgency strip */
+.dep-urgency-strip {
+  position: absolute; top: 60px; left: 0; right: 0;
+  z-index: 2; text-align: center;
+}
+.dep-urgency-strip span {
+  display: inline-block;
+  background: rgba(230,57,70,0.92);
+  color: white; font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 16px; border-radius: 50px;
   animation: pulse 2s ease-in-out infinite;
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.75} }
+
+/* Bottom content */
+.dep-card-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 28px 24px;
+  z-index: 2;
+  transform: translateY(4px);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
 }
-.dep-card-body {
-  padding: 22px 24px 24px;
-  display: flex; flex-direction: column; flex: 1;
-}
+.dep-card:hover .dep-card-bottom { transform: translateY(0); }
+
 .dep-card-date {
-  font-size: 0.68rem; color: var(--text-light);
-  margin-bottom: 8px; letter-spacing: 0.03em;
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 8px;
 }
 .dep-card-title {
   font-family: var(--font-title);
-  font-size: 1.55rem; color: var(--text-dark);
-  margin-bottom: 10px; line-height: 1.2;
+  font-size: 1.85rem; color: white;
+  line-height: 1.15; margin-bottom: 8px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
+.dep-card-featured .dep-card-title { font-size: 2.1rem; }
 .dep-card-desc {
-  font-size: 0.8rem; color: var(--text-light);
-  line-height: 1.6; margin-bottom: 20px; flex: 1;
+  font-size: 0.78rem; color: rgba(255,255,255,0.72);
+  line-height: 1.55; margin-bottom: 18px;
+  max-height: 0; overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease, margin 0.35s;
 }
-.dep-card-footer {
+.dep-card:hover .dep-card-desc {
+  max-height: 80px;
+  opacity: 1;
+}
+
+.dep-card-row {
   display: flex; align-items: center;
   justify-content: space-between; gap: 12px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(0,0,0,0.06);
 }
-.dep-card-price {
-  display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap;
-}
+.dep-card-price { display: flex; align-items: baseline; gap: 5px; }
 .dep-price-amount {
   font-family: var(--font-title);
-  font-size: 2rem; font-weight: 600;
-  color: var(--text-dark); line-height: 1;
+  font-size: 2.2rem; color: white; line-height: 1;
+  font-weight: 400;
 }
 .dep-price-currency {
-  font-size: 0.78rem; font-weight: 700;
-  color: var(--copper); letter-spacing: 0.06em;
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--copper); letter-spacing: 0.1em;
 }
 .dep-price-note {
-  font-size: 0.68rem; color: var(--text-light);
-  width: 100%; margin-top: 2px;
+  display: none; /* hidden in card view */
 }
 .dep-reserve-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 10px 22px; border-radius: 50px;
-  background: var(--forest); color: white;
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; border-radius: 50px;
+  background: white; color: var(--text-dark);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
   text-decoration: none; white-space: nowrap;
   transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
-.dep-reserve-btn:hover { background: var(--copper); transform: translateX(2px); }
+.dep-reserve-btn:hover {
+  background: var(--copper); color: white;
+  transform: scale(1.04);
+  box-shadow: 0 6px 24px rgba(184,115,51,0.5);
+}
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1100px) {
   .dep-grid { grid-template-columns: repeat(2, 1fr); }
+  .dep-card { height: 420px; }
+  .dep-card-featured { height: 460px; }
   .why-strip { grid-template-columns: repeat(2, 1fr); }
   .why-strip-item:nth-child(2) { border-right: none; }
   .why-strip-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.06); }
@@ -1406,6 +1455,9 @@ footer {
   .exp-card { aspect-ratio: 16/10; }
   .dest-grid { grid-template-columns: repeat(2, 1fr); }
   .dep-grid { grid-template-columns: 1fr; }
+  .dep-card { height: 380px; }
+  .dep-card-featured { height: 420px; }
+  .dep-card-title { font-size: 1.55rem; }
   .newsletter-inner { grid-template-columns: 1fr; gap: 44px; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
   .masonry { columns: 2; }

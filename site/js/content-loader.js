@@ -52,19 +52,21 @@ function applyDepartures(deps) {
   }
 
   container.innerHTML = visible.map((dep, i) => `
-    <div class="dep-card reveal${i === 0 ? ' dep-card-featured' : ''}">
-      <div class="dep-card-img">
+    <div class="dep-card reveal${i === 0 ? ' dep-card-featured' : ''}" style="--delay:${i * 0.12}s">
+      <div class="dep-card-bg">
         <img src="${dep.image || ''}" alt="${esc(dep.title)}" loading="lazy" onerror="this.parentElement.style.background='#1F2B22'">
-        <div class="dep-card-img-overlay"></div>
+        <div class="dep-card-gradient"></div>
+      </div>
+      <div class="dep-card-top">
         ${i === 0 ? '<span class="dep-featured-badge">⭐ En vedette</span>' : ''}
         ${dep.duration ? `<span class="dep-duration-chip">${esc(dep.duration)}</span>` : ''}
-        ${dep.spots_urgency ? `<span class="dep-urgency-chip">${esc(dep.spots_urgency)}</span>` : ''}
       </div>
-      <div class="dep-card-body">
+      ${dep.spots_urgency ? `<div class="dep-urgency-strip"><span>🔴 ${esc(dep.spots_urgency)}</span></div>` : ''}
+      <div class="dep-card-bottom">
         ${dep.date ? `<div class="dep-card-date">📅 ${esc(dep.date)}</div>` : ''}
         <h3 class="dep-card-title">${esc(dep.title)}</h3>
         <p class="dep-card-desc">${esc(dep.description)}</p>
-        <div class="dep-card-footer">
+        <div class="dep-card-row">
           <div class="dep-card-price">
             <span class="dep-price-amount">${esc(dep.price)}</span>
             <span class="dep-price-currency">${esc(dep.currency || 'MAD')}</span>
