@@ -234,3 +234,24 @@ document.querySelector('.search-submit')?.addEventListener('click', () => {
     document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+/* VIDEO TESTIMONIALS — play/pause on click, autoplay on hover */
+document.querySelectorAll('.vtesti-item').forEach(item => {
+  const video = item.querySelector('.vtesti-video');
+  item.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      item.classList.add('playing');
+    } else {
+      video.pause();
+      item.classList.remove('playing');
+    }
+  });
+  item.addEventListener('mouseenter', () => { video.play(); item.classList.add('playing'); });
+  item.addEventListener('mouseleave', () => { video.pause(); item.classList.remove('playing'); });
+});
+
+document.getElementById('vtesti-load-more')?.addEventListener('click', function() {
+  document.querySelectorAll('.vtesti-more, #vtesti-more-toggle').forEach(el => el.style.display = '');
+  this.style.display = 'none';
+});

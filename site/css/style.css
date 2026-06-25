@@ -1048,6 +1048,48 @@ ul { list-style: none; }
 .insta-item:hover .insta-item-overlay { background: rgba(17,17,17,0.42); opacity: 1; }
 
 /* ============================================================
+   VIDEO TESTIMONIALS
+   ============================================================ */
+.vtesti-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.vtesti-item {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 9/16;
+  background: #0a1a10;
+  cursor: pointer;
+}
+.vtesti-video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s var(--ease);
+}
+.vtesti-item:hover .vtesti-video { transform: scale(1.04); }
+.vtesti-play {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; color: white;
+  background: rgba(0,0,0,0.25);
+  transition: opacity 0.3s;
+}
+.vtesti-item.playing .vtesti-play { opacity: 0; }
+.vtesti-item:hover .vtesti-play { opacity: 0.7; }
+
+@media (max-width: 768px) {
+  .vtesti-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+@media (max-width: 480px) {
+  .vtesti-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .vtesti-item { border-radius: 10px; }
+}
+
+/* ============================================================
    NEWSLETTER — copper band
    ============================================================ */
 #newsletter { background: var(--gradient-accent); padding: 100px 0; }
