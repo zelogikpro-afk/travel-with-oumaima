@@ -5,7 +5,7 @@
 
 async function loadSiteContent() {
   try {
-    const res = await fetch('/api/content?t=' + Date.now());
+    const res = await fetch('content.json?t=' + Date.now());
     if (!res.ok) return;
     const c = await res.json();
     applyHero(c.hero || {});
