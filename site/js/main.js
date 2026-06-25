@@ -9,10 +9,22 @@ window.addEventListener('load', () => {
   }, 1900);
 });
 
-/* NAVBAR SCROLL */
+/* NAVBAR SCROLL + TOP BAR HIDE */
 const navbar = document.getElementById('navbar');
+const topBar = document.getElementById('top-bar');
+const topBarH = topBar ? topBar.offsetHeight : 0;
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  const scrolled = window.scrollY > 60;
+  navbar.classList.toggle('scrolled', scrolled);
+  if (topBar) {
+    if (window.scrollY > topBarH) {
+      topBar.style.transform = 'translateY(-100%)';
+      navbar.style.top = '0';
+    } else {
+      topBar.style.transform = '';
+      navbar.style.top = topBarH + 'px';
+    }
+  }
 }, { passive: true });
 
 /* MOBILE MENU */

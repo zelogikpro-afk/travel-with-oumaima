@@ -51,27 +51,27 @@ function applyDepartures(deps) {
     return;
   }
 
-  container.innerHTML = visible.map(dep => `
-    <div class="dep-card reveal">
-      <div class="dep-image">
+  container.innerHTML = visible.map((dep, i) => `
+    <div class="dep-card reveal${i === 0 ? ' dep-card-featured' : ''}">
+      <div class="dep-card-img">
         <img src="${dep.image || ''}" alt="${esc(dep.title)}" loading="lazy" onerror="this.parentElement.style.background='#1F2B22'">
-        ${dep.spots ? `<span class="dep-badge" style="background:${dep.badge_color || '#B87333'}">${esc(dep.spots)}</span>` : ''}
+        <div class="dep-card-img-overlay"></div>
+        ${i === 0 ? '<span class="dep-featured-badge">⭐ En vedette</span>' : ''}
+        ${dep.duration ? `<span class="dep-duration-chip">${esc(dep.duration)}</span>` : ''}
+        ${dep.spots_urgency ? `<span class="dep-urgency-chip">${esc(dep.spots_urgency)}</span>` : ''}
       </div>
-      <div class="dep-content">
-        <div class="dep-meta">
-          ${dep.date ? `<span>📅 ${esc(dep.date)}</span>` : ''}
-          ${dep.duration ? `<span>⏱ ${esc(dep.duration)}</span>` : ''}
-        </div>
-        <h3 class="t-title">${esc(dep.title)}</h3>
-        <p style="font-size:0.82rem;color:var(--text-light);line-height:1.6;">${esc(dep.description)}</p>
-        <div class="dep-footer">
-          <div class="dep-price">
-            <span class="amount">${esc(dep.price)} <span style="font-size:1rem;">${esc(dep.currency || 'MAD')}</span></span>
-            <span class="per">${esc(dep.price_note || '')}</span>
+      <div class="dep-card-body">
+        ${dep.date ? `<div class="dep-card-date">📅 ${esc(dep.date)}</div>` : ''}
+        <h3 class="dep-card-title">${esc(dep.title)}</h3>
+        <p class="dep-card-desc">${esc(dep.description)}</p>
+        <div class="dep-card-footer">
+          <div class="dep-card-price">
+            <span class="dep-price-amount">${esc(dep.price)}</span>
+            <span class="dep-price-currency">${esc(dep.currency || 'MAD')}</span>
+            ${dep.price_note ? `<span class="dep-price-note">${esc(dep.price_note)}</span>` : ''}
           </div>
-          ${dep.spots_urgency ? `<span class="dep-spots">${esc(dep.spots_urgency)}</span>` : ''}
+          <a href="https://wa.me/${esc(dep.whatsapp || '212600000000')}" class="dep-reserve-btn" target="_blank">Réserver →</a>
         </div>
-        <a href="https://wa.me/${esc(dep.whatsapp || '212600000000')}" class="dep-btn" target="_blank">Je rejoins l'aventure →</a>
       </div>
     </div>
   `).join('');

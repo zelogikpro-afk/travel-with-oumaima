@@ -12,6 +12,27 @@
 </head>
 <body>
 
+<!-- TOP INFO BAR -->
+<div id="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-contact">
+      <a href="https://wa.me/212600000000" data-contact="whatsapp" target="_blank" class="top-bar-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        +212 600 000 000
+      </a>
+      <a href="mailto:contact@travelwithoumaima.ma" data-contact="email" class="top-bar-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        contact@travelwithoumaima.ma
+      </a>
+    </div>
+    <div class="top-bar-social">
+      <span class="top-bar-badge">♀ 100% Femmes · Maroc</span>
+      <a href="https://instagram.com/travel_with_oumaima" data-contact="instagram" target="_blank" class="top-bar-social-link">Instagram</a>
+      <a href="https://wa.me/212600000000" data-contact="whatsapp" target="_blank" class="top-bar-social-link top-bar-social-wa">Réserver</a>
+    </div>
+  </div>
+</div>
+
 <!-- LOADER -->
 <div id="loader">
   <span class="loader-script">Travel with Oumaima</span>
@@ -68,9 +89,9 @@
                   filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5)); mix-blend-mode: screen;">
     </div>
     <p id="hero-subtitle-text" style="display:none;"></p>
-    <div style="display:none;">
-      <a id="hero-cta1" href="#experiences">Explorer les expériences</a>
-      <a id="hero-cta2" href="#departures">Voir les prochains départs</a>
+    <div class="hero-ctas" style="animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.8s both; margin-top: 32px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="#departures" class="btn-primary-hero">Voir les prochains départs</a>
+      <a href="#experiences" class="btn-ghost-hero">Découvrir les expériences</a>
     </div>
   </div>
   <div class="hero-scroll">
@@ -79,8 +100,24 @@
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
-<!-- philosophy removed -->
+<!-- PROCHAINS DÉPARTS — EN PREMIER comme sur mtexplore.ma -->
+<section id="departures" class="section" style="background:#f8f8f8;">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="t-script">Ne manquez pas</span>
+      <h2 class="t-title">Prochains Départs</h2>
+      <p class="t-body">Des places limitées pour des expériences inoubliables. Réservez votre aventure dès maintenant.</p>
+      <div class="divider"></div>
+    </div>
+    <div id="dep-dynamic-grid" class="dep-grid">
+      <!-- chargé dynamiquement par content-loader.js -->
+    </div>
+    <div style="text-align:center;margin-top:56px;" class="reveal">
+      <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:20px;">D'autres sorties arrivent bientôt…</p>
+      <a href="https://wa.me/212600000000" data-contact="whatsapp" class="btn-dark" target="_blank">Contacter pour plus de départs</a>
+    </div>
+  </div>
+</section>
 
 <!-- EXPERIENCES -->
 <section id="experiences" class="section">
@@ -126,40 +163,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- SEARCH -->
-<section id="search-section">
-  <div class="container">
-    <p class="t-label" style="text-align:center;color:rgba(247,241,232,0.5);margin-bottom:20px;">Trouvez votre prochaine aventure</p>
-    <div class="search-box">
-      <div class="search-item">
-        <label class="search-label" for="search-dest">Destination</label>
-        <select class="search-select" id="search-dest">
-          <option value="all">Toutes les destinations</option>
-          <option value="chefchaouen">Chefchaouen</option>
-          <option value="merzouga">Merzouga</option>
-          <option value="toubkal">Toubkal</option>
-          <option value="fahs">Fahs Lamhar</option>
-          <option value="parapente">Parapente</option>
-        </select>
-      </div>
-      <div class="search-item">
-        <label class="search-label" for="search-type">Type</label>
-        <select class="search-select" id="search-type">
-          <option value="all">Toutes les expériences</option>
-          <option value="voyage">Voyages organisés</option>
-          <option value="sortie">Sorties journée</option>
-          <option value="activite">Activités</option>
-        </select>
-      </div>
-      <div class="search-item">
-        <label class="search-label" for="search-date">Date</label>
-        <input type="month" class="search-input" id="search-date">
-      </div>
-      <button class="search-submit">🔍 Rechercher</button>
     </div>
   </div>
 </section>
@@ -376,87 +379,36 @@
   </div>
 </section>
 
-<!-- PROCHAINS DÉPARTS -->
-<section id="departures" class="section" style="background:#ffffff;">
+<!-- WHY STRIP -->
+<section id="why" class="why-strip-section">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="t-script">Ne manquez pas</span>
-      <h2 class="t-title">Prochains Départs</h2>
-      <p class="t-body">Des places limitées pour des expériences illimitées. Rejoignez l'aventure.</p>
-      <div class="divider"></div>
-    </div>
-    <div id="dep-dynamic-grid" class="dep-grid">
-      <!-- chargé dynamiquement par content-loader.js -->
-    </div>
-    <div style="text-align:center;margin-top:56px;" class="reveal">
-      <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:20px;">Et bien d'autres sorties à venir…</p>
-      <a href="https://wa.me/212600000000" class="btn-dark" target="_blank">Voir le calendrier complet</a>
+    <div class="why-strip reveal">
+      <div class="why-strip-item">
+        <span class="why-strip-icon">♀️</span>
+        <div class="why-strip-label">100% Femmes</div>
+        <p>Un cadre exclusivement féminin pour vous sentir totalement libre.</p>
+      </div>
+      <div class="why-strip-item">
+        <span class="why-strip-icon">👭</span>
+        <div class="why-strip-label">Petits groupes</div>
+        <p>Des groupes restreints pour une expérience intime et personnalisée.</p>
+      </div>
+      <div class="why-strip-item">
+        <span class="why-strip-icon">✅</span>
+        <div class="why-strip-label">Tout inclus</div>
+        <p>Transport, hébergement, repas, activités — tout est organisé pour vous.</p>
+      </div>
+      <div class="why-strip-item">
+        <span class="why-strip-icon">🛡️</span>
+        <div class="why-strip-label">Sécurité totale</div>
+        <p>Guides professionnels et assistance 24h/24 pendant toutes les sorties.</p>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- WHY -->
-<section id="why" class="section">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="t-script">Pourquoi nous</span>
-      <h2 class="t-title">L'expérience Travel with Oumaima</h2>
-      <p class="t-body">Chaque détail est pensé pour que vous puissiez vous concentrer sur l'essentiel : vivre pleinement.</p>
-      <div class="divider"></div>
-    </div>
-    <div class="why-grid">
-      <div class="why-item reveal reveal-delay-1"><span class="why-icon">♀️</span><div class="t-label">100% Femmes</div><p>Un cadre exclusivement féminin pour vous sentir totalement libre et en sécurité.</p></div>
-      <div class="why-item reveal reveal-delay-2"><span class="why-icon">👭</span><div class="t-label">Petits groupes</div><p>Des groupes restreints pour une expérience intime, chaleureuse et personnalisée.</p></div>
-      <div class="why-item reveal reveal-delay-3"><span class="why-icon">✅</span><div class="t-label">Organisation complète</div><p>Transport, hébergement, repas, activités — tout est organisé pour vous.</p></div>
-      <div class="why-item reveal reveal-delay-4"><span class="why-icon">🛡️</span><div class="t-label">Sécurité totale</div><p>Guides professionnels, parcours sécurisés, assistance 24h/24 pendant les sorties.</p></div>
-      <div class="why-item reveal reveal-delay-1"><span class="why-icon">🌿</span><div class="t-label">Guides passionnés</div><p>Des guides experts et passionnés qui connaissent chaque sentier par cœur.</p></div>
-      <div class="why-item reveal reveal-delay-2"><span class="why-icon">💫</span><div class="t-label">Accompagnement</div><p>Un suivi personnalisé avant, pendant et après chaque aventure.</p></div>
-      <div class="why-item reveal reveal-delay-3"><span class="why-icon">🏔️</span><div class="t-label">Expériences authentiques</div><p>Des expériences soigneusement sélectionnées loin des circuits touristiques classiques.</p></div>
-      <div class="why-item reveal reveal-delay-4"><span class="why-icon">❤️</span><div class="t-label">Moments inoubliables</div><p>Des souvenirs qui durent une vie, des amitiés qui naissent pour toujours.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery" class="section" style="background:white;">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="t-script">En images</span>
-      <h2 class="t-title">Galerie</h2>
-      <p class="t-body">Des instants capturés, des émotions partagées — l'âme de Travel with Oumaima en photos.</p>
-      <div class="divider"></div>
-    </div>
-    <div class="masonry reveal">
-      <div class="masonry-item"><img src="images/toubkal/IMG-20260526-WA0125.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/merzouga/IMG-20260526-WA0074.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/chefchaouen/IMG-20260526-WA0107.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/parapente/IMG-20260526-WA0154.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/fahs/IMG-20260526-WA0057.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/toubkal/IMG-20260526-WA0131.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/merzouga/IMG-20260526-WA0092.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/chefchaouen/IMG-20260526-WA0115.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/fahs/IMG-20260526-WA0062.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/toubkal/IMG-20260526-WA0127.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/merzouga/IMG-20260526-WA0081.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/chefchaouen/IMG-20260526-WA0110.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/parapente/IMG-20260526-WA0152.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/fahs/IMG-20260526-WA0060.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/general/IMG-20260519-WA0011.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-      <div class="masonry-item"><img src="images/general/IMG-20260525-WA0048.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <span class="lightbox-close" id="lightbox-close">✕</span>
-  <button class="lightbox-nav lightbox-prev" id="lb-prev">‹</button>
-  <img id="lightbox-img" class="lightbox-img" src="" alt="Galerie">
-  <button class="lightbox-nav lightbox-next" id="lb-next">›</button>
-</div>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials" class="section">
+<section id="testimonials" class="section" style="background:#f8f8f8;">
   <div class="container">
     <div class="section-header reveal">
       <span class="t-script">Elles ont vécu l'expérience</span>
@@ -506,7 +458,7 @@
   </div>
 </section>
 
-<!-- COMMUNITY -->
+<!-- COMMUNITY / À PROPOS -->
 <section id="community">
   <div class="community-bg">
     <img src="images/general/IMG-20260519-WA0011.jpg" alt="Communauté Travel with Oumaima" loading="lazy">
@@ -528,6 +480,44 @@
     </div>
   </div>
 </section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section" style="background:white;">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="t-script">En images</span>
+      <h2 class="t-title">Galerie</h2>
+      <p class="t-body">Des instants capturés, des émotions partagées — l'âme de Travel with Oumaima en photos.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="masonry reveal">
+      <div class="masonry-item"><img src="images/toubkal/IMG-20260526-WA0125.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/merzouga/IMG-20260526-WA0074.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/chefchaouen/IMG-20260526-WA0107.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/parapente/IMG-20260526-WA0154.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/fahs/IMG-20260526-WA0057.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/toubkal/IMG-20260526-WA0131.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/merzouga/IMG-20260526-WA0092.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/chefchaouen/IMG-20260526-WA0115.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/fahs/IMG-20260526-WA0062.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/toubkal/IMG-20260526-WA0127.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/merzouga/IMG-20260526-WA0081.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/chefchaouen/IMG-20260526-WA0110.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/parapente/IMG-20260526-WA0152.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/fahs/IMG-20260526-WA0060.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/general/IMG-20260519-WA0011.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+      <div class="masonry-item"><img src="images/general/IMG-20260525-WA0048.jpg" alt loading="lazy"><div class="masonry-overlay"><div class="masonry-zoom">🔍</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">✕</span>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev">‹</button>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="Galerie">
+  <button class="lightbox-nav lightbox-next" id="lb-next">›</button>
+</div>
 
 <!-- INSTAGRAM -->
 <section id="instagram" class="section" style="background:white;">
