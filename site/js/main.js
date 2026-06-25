@@ -235,23 +235,56 @@ document.querySelector('.search-submit')?.addEventListener('click', () => {
   }
 });
 
-/* VIDEO TESTIMONIALS — play/pause on click, autoplay on hover */
-document.querySelectorAll('.vtesti-item').forEach(item => {
-  const video = item.querySelector('.vtesti-video');
-  item.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-      item.classList.add('playing');
-    } else {
-      video.pause();
-      item.classList.remove('playing');
-    }
-  });
-  item.addEventListener('mouseenter', () => { video.play(); item.classList.add('playing'); });
-  item.addEventListener('mouseleave', () => { video.pause(); item.classList.remove('playing'); });
-});
+/* VIDEO TESTIMONIALS SLIDER */
+(function() {
+  const track = document.getElementById('vtesti-track');
+  if (!track) return;
+  const slides = Array.from(track.querySelectorAll('.vtesti-slide'));
+  const dotsWrap = document.getElementById('vtesti-dots');
+  const total = slides.length;
+  let current = 0;
+  const perView = () => window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
 
-document.getElementById('vtesti-load-more')?.addEventListener('click', function() {
-  document.querySelectorAll('.vtesti-more, #vtesti-more-toggle').forEach(el => el.style.display = '');
-  this.style.display = 'none';
-});
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('span');
+    d.className = 'vtesti-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(idx) {
+    // Pause current playing video
+    slides[current].querySelector('.vtesti-video')?.pause();
+    slides[current].classList.remove('playing', 'active');
+
+    current = (idx + total) % total;
+    const pv = perView();
+    const slideW = slides[0].offsetWidth + 16;
+    let offset = current * slideW;
+    // Center active slide
+    const viewW = track.parentElement.offsetWidth;
+    offset = Math.max(0, current * slideW - (viewW / 2) + (slideW / 2));
+    track.style.transform = `translateX(-${offset}px)`;
+
+    slides.forEach((s, i) => s.classList.toggle('active', i === current));
+    dotsWrap.querySelectorAll('.vtesti-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  // Click to play/pause
+  slides.forEach((slide, i) => {
+    const video = slide.querySelector('.vtesti-video');
+    slide.addEventListener('click', () => {
+      if (current !== i) { goTo(i); return; }
+      if (video.paused) { video.play(); slide.classList.add('playing'); }
+      else { video.pause(); slide.classList.remove('playing'); }
+    });
+    // Auto-advance on video end
+    video.addEventListener('ended', () => goTo(current + 1));
+  });
+
+  document.getElementById('vtesti-prev')?.addEventListener('click', () => goTo(current - 1));
+  document.getElementById('vtesti-next')?.addEventListener('click', () => goTo(current + 1));
+
+  goTo(0);
+})();
