@@ -1445,12 +1445,13 @@ footer {
 @media (max-width: 900px) {
   .top-bar-contact { display: none; }
   .top-bar-inner { justify-content: center; }
-  .container { padding: 0 24px; }
-  .section { padding: 80px 0; }
+  .container { padding: 0 20px; }
+  .section { padding: 64px 0; }
   .nav-links { display: none; }
+  .nav-cta .btn-outline { display: none; }
   .nav-hamburger { display: flex; }
-  #navbar { padding: 20px 24px; }
-  #navbar.scrolled { padding: 14px 24px; }
+  #navbar { padding: 16px 20px; }
+  #navbar.scrolled { padding: 12px 20px; }
   .exp-grid { grid-template-columns: 1fr; gap: 20px; }
   .exp-card { aspect-ratio: 16/10; }
   .dest-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1465,6 +1466,26 @@ footer {
 }
 @media (max-width: 600px) {
   #top-bar { display: none; }
+  #navbar { top: 0 !important; }
+  .section { padding: 56px 0; }
+  .section-header { margin-bottom: 48px; }
+  .section-header .t-script { font-size: 1.8rem; }
+  .section-header .t-title { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+
+  /* Hero mobile */
+  .hero-ctas { flex-direction: row; flex-wrap: wrap; gap: 10px; padding: 0 20px; }
+  .btn-primary-hero, .btn-ghost-hero {
+    font-size: 0.6rem; padding: 12px 20px; flex: 1; min-width: 140px; text-align: center; justify-content: center;
+  }
+
+  /* Departure cards mobile */
+  .dep-card { height: 340px; }
+  .dep-card-featured { height: 370px; }
+  .dep-card-title { font-size: 1.4rem; }
+  .dep-card-bottom { padding: 20px; }
+  .dep-price-amount { font-size: 1.8rem; }
+  .dep-reserve-btn { padding: 9px 18px; font-size: 0.58rem; }
+
   .dest-grid { grid-template-columns: 1fr; }
   .why-strip { grid-template-columns: 1fr; }
   .why-strip-item { border-right: none; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -1473,7 +1494,7 @@ footer {
   .masonry { columns: 2; }
   .community-features { flex-direction: column; }
   .insta-grid { grid-template-columns: repeat(3, 1fr); }
-  .dep-card-footer { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .dep-reserve-btn { width: 100%; justify-content: center; }
-  .hero-ctas { flex-direction: column; align-items: center; }
+  .contact-grid { grid-template-columns: 1fr !important; }
+  .testi-quote { font-size: 1.2rem; }
+  .testi-slide { padding: 0 16px; }
 }
