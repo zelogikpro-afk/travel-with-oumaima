@@ -819,11 +819,9 @@ ul { list-style: none; }
 .dep-btn:hover { background: var(--copper); }
 
 /* ============================================================
-   WHY CHOOSE US — white cards with subtle borders
+   WHY CHOOSE US — now a dark strip (why-strip-section)
    ============================================================ */
-#why { background: white; }
-#why .section-header .t-title { color: var(--text-dark); }
-#why .section-header .t-body { color: var(--text-mid); }
+#why { background: var(--forest); }
 .why-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
