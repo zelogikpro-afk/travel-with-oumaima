@@ -20,78 +20,807 @@
   },
   "departures": [
     {
-      "id": 4,
-      "title": "Essaouira — Cité des Alizés",
-      "date": "26 · 27 · 28 Juin 2026",
-      "duration": "3 jours",
-      "price": "1 570",
+      "id": 7,
+      "title": "Tétouan & Belyounech",
+      "subtitle": "Détroit de Gibraltar",
+      "slug": "belyounech",
+      "dates": [
+        {
+          "label": "11 & 12 Juillet 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "1er & 2 Août 2026",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "2 jours / 1 nuit",
+      "price": "1 100",
       "currency": "DH",
-      "price_note": "par personne · tout compris",
-      "spots_urgency": "🟢 Places disponibles",
-      "description": "Médina classée UNESCO, remparts face à l'Atlantique, ruelles bleues et blanches, artisanat, poissons frais au port. Un dépaysement total.",
-      "image": "images/essaouira/03.jpg",
-      "whatsapp": "212600000000",
-      "visible": true
+      "price_note": "par personne",
+      "description": "Week-end 100% femmes à Tétouan et Belyounech : scuba diving au pied du détroit de Gibraltar. S'amuser, se dépasser, se ressourcer — des moments inoubliables entre femmes.",
+      "program": [
+        {
+          "day": "Samedi",
+          "items": [
+            "9h00 : Départ de Casablanca (Ibis Sidi Maârouf) · 10h15 : Rabat (Gare Rabat Ville)",
+            "Déjeuner à Aïn Lahcen (inclus)",
+            "Installation à l'hôtel et repos",
+            "Activité quad en groupe (non incluse)",
+            "Arrêt photos au barrage Smir",
+            "Coucher de soleil au Café Bouanane, vue panoramique sur Tétouan",
+            "Dîner (inclus)"
+          ]
+        },
+        {
+          "day": "Dimanche",
+          "items": [
+            "Petit-déjeuner en groupe",
+            "Départ pour Belyounech, arrivée au centre de plongée",
+            "Activité scuba diving avec photos et vidéos (non incluse — 300 DH)",
+            "Baignade en groupe puis déjeuner",
+            "Retour vers Rabat et Casablanca"
+          ]
+        }
+      ],
+      "program_note": "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/belyounech/01.jpg",
+        "images/belyounech/02.jpg",
+        "images/belyounech/03.jpg",
+        "images/belyounech/04.jpg",
+        "images/belyounech/07.jpg",
+        "images/belyounech/09.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
     },
     {
       "id": 5,
       "title": "Circuit Oualidia · Essaouira · Imsouane",
-      "date": "16 → 19 Juillet 2026",
-      "duration": "4 jours",
+      "subtitle": "Road trip côte Atlantique",
+      "slug": "oualidia-circuit",
+      "dates": [
+        {
+          "label": "16 → 19 Juillet 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "13 → 16 Août 2026",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "4 jours / 3 nuits",
       "price": "2 920",
       "currency": "DH",
-      "price_note": "par personne · tout compris",
-      "spots_urgency": "🟢 Places disponibles",
-      "description": "Road trip sur la côte Atlantique : huîtres d'Oualidia, médina d'Essaouira, surf & coucher de soleil à Imsouane. Un circuit inoubliable.",
-      "image": "images/oualidia/05.jpg",
-      "whatsapp": "212600000000",
-      "visible": true
-    },
-    {
-      "id": 6,
-      "title": "Circuit Oualidia · Essaouira · Imsouane",
-      "date": "13 → 16 Août 2026",
-      "duration": "4 jours",
-      "price": "2 920",
-      "currency": "DH",
-      "price_note": "par personne · tout compris",
-      "spots_urgency": "🟢 Places disponibles",
-      "description": "Road trip sur la côte Atlantique : huîtres d'Oualidia, médina d'Essaouira, surf & coucher de soleil à Imsouane. Un circuit inoubliable.",
-      "image": "images/oualidia/08.jpg",
-      "whatsapp": "212600000000",
-      "visible": true
-    },
-    {
-      "id": 7,
-      "title": "Belyounech — Détroit de Gibraltar",
-      "date": "11 & 12 Juillet 2026",
-      "duration": "1 journée",
-      "price": "1 100",
-      "currency": "DH",
-      "price_note": "par personne · transport inclus",
-      "spots_urgency": "🟢 Places disponibles",
-      "description": "Plage sauvage au bout du Maroc, là où la Méditerranée rencontre l'Atlantique. Falaises, eaux turquoise, air pur — une journée ressourçante.",
-      "image": "images/belyounech/04.jpg",
-      "whatsapp": "212600000000",
-      "visible": true
+      "price_note": "par personne",
+      "description": "Road trip sur la côte Atlantique : huîtres d'Oualidia, médina d'Essaouira, surf & coucher de soleil à Imsouane. Trois villes, une escapade inoubliable.",
+      "program": [
+        {
+          "day": "Jeudi — Oualidia",
+          "items": [
+            "8h00 : Départ de Rabat (Gare Rabat Ville) · 9h00 : Casablanca (Ibis Sidi Maârouf)",
+            "Installation au Château Eden El Rouh (5 étoiles)",
+            "Déjeuner en groupe (inclus)",
+            "Sortie en bateau, découverte de la lagune et baignade (incluses)",
+            "Dîner (inclus)"
+          ]
+        },
+        {
+          "day": "Vendredi — Essaouira",
+          "items": [
+            "Petit-déjeuner puis activité quad en groupe",
+            "Départ vers Essaouira, déjeuner en groupe (inclus)",
+            "Installation à l'hôtel et repos",
+            "Balade à cheval au coucher du soleil",
+            "Visite guidée de la médina et achat de produits locaux",
+            "Dîner (non inclus)"
+          ]
+        },
+        {
+          "day": "Samedi — Imsouane & Timlaline",
+          "items": [
+            "Petit-déjeuner puis baignade à la plage",
+            "Route vers Imsouane, installation à l'hôtel",
+            "Déjeuner en groupe (inclus), repos",
+            "Visite des dunes de Timlaline et coucher de soleil autour d’une pause thé (inclus)",
+            "Dîner (non inclus)"
+          ]
+        },
+        {
+          "day": "Dimanche — Surf & retour",
+          "items": [
+            "Petit-déjeuner puis séance de surf en groupe",
+            "Déjeuner en groupe (inclus)",
+            "Retour vers Casablanca et Rabat"
+          ]
+        }
+      ],
+      "program_note": "Le prix comprend : transport, hôtels, petits-déjeuners, déjeuners, sortie en bateau, visite de la lagune, pause thé à Timlaline. Non inclus : quad, balade à cheval, surf, dîners du vendredi et du samedi. L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/oualidia/01.jpg",
+        "images/oualidia/02.jpg",
+        "images/oualidia/05.jpg",
+        "images/oualidia/08.jpg",
+        "images/oualidia/10.jpg",
+        "images/oualidia/12.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
     },
     {
       "id": 8,
-      "title": "Belyounech — Détroit de Gibraltar",
-      "date": "1er & 2 Août 2026",
-      "duration": "1 journée",
-      "price": "1 100",
+      "title": "Ouirgane",
+      "subtitle": "Écrin vert du Haut Atlas",
+      "slug": "ouirgane",
+      "dates": [
+        {
+          "label": "18 · 19 · 20 Septembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "16 · 17 · 18 Octobre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "20 · 21 · 22 Novembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "23 · 24 · 25 Avril 2027",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "3 jours / 2 nuits",
+      "price": "1 700",
       "currency": "DH",
-      "price_note": "par personne · transport inclus",
-      "spots_urgency": "🟢 Places disponibles",
-      "description": "Plage sauvage au bout du Maroc, là où la Méditerranée rencontre l'Atlantique. Falaises, eaux turquoise, air pur — une journée ressourçante.",
-      "image": "images/belyounech/07.jpg",
-      "whatsapp": "212600000000",
-      "visible": true
+      "price_note": "par personne · tout inclus · randonnée 2/5",
+      "description": "Week-end nature au cœur du Haut Atlas : lac d'Ouirgane, villages berbères, randonnées douces entre oliviers et montagnes, à seulement une heure de Marrakech.",
+      "program": [
+        {
+          "day": "Vendredi",
+          "items": [
+            "17h00 : Départ de Rabat (McDonald's Rabat Ville) · 18h30 : Casablanca (Ibis Sidi Maârouf)",
+            "Dîner à Imlil puis route vers Ouirgane",
+            "Arrivée à l'hôtel et installation"
+          ]
+        },
+        {
+          "day": "Samedi",
+          "items": [
+            "Petit-déjeuner puis randonnée de 3h jusqu’au barrage de Ouirgane",
+            "Découverte et achat de produits locaux",
+            "Pause thé/café face au barrage et photos panoramiques",
+            "Baignade au barrage",
+            "Déjeuner à l'hôtel et repos",
+            "Goûter chez l'habitant",
+            "Dîner avec animation"
+          ]
+        },
+        {
+          "day": "Dimanche",
+          "items": [
+            "Petit-déjeuner à l'hôtel",
+            "Détente et baignade à la piscine face aux montagnes de l’Atlas",
+            "Déjeuner au village d'Asni",
+            "Retour vers Casablanca et Rabat"
+          ]
+        }
+      ],
+      "program_note": "Tout inclus. L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/ouirgane/01.jpg",
+        "images/ouirgane/02.jpg",
+        "images/ouirgane/04.jpg",
+        "images/ouirgane/07.jpg",
+        "images/ouirgane/10.jpg",
+        "images/ouirgane/13.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
     },
+    {
+      "id": 9,
+      "title": "Imlil",
+      "subtitle": "Village berbère du Toubkal",
+      "slug": "imlil",
+      "dates": [
+        {
+          "label": "26 & 27 Septembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "31 Octobre → 01 Novembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "26 & 27 Décembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "2 · 3 · 4 Avril 2027",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "2 jours / 1 nuit",
+      "price": "1 300",
+      "currency": "DH",
+      "price_note": "par personne · tout inclus",
+      "description": "Escapade à Imlil, au pied du Toubkal : randonnée entre noyers et cascades, nuit en gîte de montagne, thé à la menthe face aux sommets et immersion dans la culture berbère.",
+      "program": [
+        {
+          "day": "Jour 1",
+          "items": [
+            "Départ de Rabat (à côté du McDonald's Rabat Ville) et de Casablanca à 7h50 (Ibis Sidi Maârouf)",
+            "Petit-déjeuner à Marrakech (inclus)",
+            "Arrêt à Asni pour le déjeuner face à de magnifiques paysages (inclus)",
+            "Arrivée et installation à l'hôtel (inclus), moment de repos",
+            "Sortie guidée pour découvrir la beauté d'Imlil et les produits locaux (incluse)",
+            "Dîner et animation"
+          ]
+        },
+        {
+          "day": "Jour 2",
+          "items": [
+            "Petit-déjeuner à 8h00 (inclus)",
+            "Randonnée vers la cascade d'Imlil puis le village d'Armed (incluse)",
+            "Déjeuner chez l'habitant à Armed (inclus)",
+            "Retour à Imlil puis départ vers Marrakech, Casablanca et Rabat",
+            "Temps de randonnée : 3h · Difficulté : 2/5"
+          ]
+        }
+      ],
+      "program_note": "Tout inclus. L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/imlil/01.jpg",
+        "images/imlil/03.jpg",
+        "images/imlil/05.jpg",
+        "images/imlil/08.jpg",
+        "images/imlil/11.jpg",
+        "images/imlil/14.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
+    },
+    {
+      "id": 10,
+      "title": "Imsefrane",
+      "subtitle": "La cathédrale de l’Atlas",
+      "slug": "imsefrane",
+      "dates": [
+        {
+          "label": "02 · 03 · 04 Octobre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "06 · 07 · 08 Novembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "04 · 05 · 06 Décembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "29 · 30 · 31 Janvier 2027",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "09 · 10 · 11 Avril 2027",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "3 jours / 2 nuits",
+      "price": "",
+      "currency": "DH",
+      "price_note": "prix communiqué à la réservation",
+      "description": "Trek vers la majestueuse cathédrale d'Imsefrane, falaises spectaculaires du Haut Atlas central, gorges, villages isolés et nuits au cœur d'une nature brute et préservée.",
+      "program": [],
+      "program_note": "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/general/IMG-20260525-WA0048.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
+    },
+    {
+      "id": 12,
+      "title": "Merzouga",
+      "subtitle": "Dunes de l’Erg Chebbi",
+      "slug": "merzouga",
+      "dates": [
+        {
+          "label": "23 · 24 · 25 Octobre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "13 · 14 · 15 Novembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "22 · 23 · 24 Janvier 2027",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "12 · 13 · 14 Mars 2027",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "30 Avril → 02 Mai 2027",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "3 jours / 2 nuits",
+      "price": "1 900",
+      "currency": "DH",
+      "price_note": "par personne · tout inclus · 6 villes à découvrir",
+      "description": "Une aventure authentique entre dunes, nature et sororité : excursion en 4x4 dans le désert, balade à dos de dromadaire au coucher du soleil, nuit magique en bivouac sous les étoiles, partage et gastronomie locale.",
+      "program": [
+        {
+          "day": "Vendredi",
+          "items": [
+            "10h30 : Départ de Casablanca (Ibis Sidi Maârouf) · 12h00 : Rabat (Gare Rabat Ville)",
+            "Déjeuner à Boufekrane",
+            "Arrêt au point de vue panoramique d'Ito, pause café à la forêt d'Azrou",
+            "Arrivée à Midelt, installation à l'hôtel, dîner avec animation"
+          ]
+        },
+        {
+          "day": "Samedi — Direction Merzouga",
+          "items": [
+            "Petit-déjeuner puis départ vers Merzouga, arrêt face à l'oasis du Ziz",
+            "Achat de chèches pour l'entrée dans le désert",
+            "Déjeuner Medfouna à Rissani, plat typique de la région",
+            "Visite du Mausolée Moulay Ali Chérif, pause café à Dar Gnawa avec animation gnaoua",
+            "Balade à dos de dromadaire (en option)",
+            "Coucher de soleil dans les dunes puis transfert en 4x4 au bivouac",
+            "Dîner avec animation"
+          ]
+        },
+        {
+          "day": "Dimanche",
+          "items": [
+            "Lever du soleil dans le désert, petit-déjeuner au bivouac",
+            "Balade en quad dans le désert (en option)",
+            "Déjeuner à Midelt",
+            "Retour vers Rabat et Casablanca"
+          ]
+        }
+      ],
+      "program_note": "Tout inclus (hors options dromadaire et quad). L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/merzouga/IMG-20260526-WA0079.jpg",
+        "images/merzouga/IMG-20260526-WA0080.jpg",
+        "images/merzouga/IMG-20260526-WA0086.jpg",
+        "images/merzouga/IMG-20260526-WA0089.jpg",
+        "images/merzouga/IMG-20260526-WA0091.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
+    },
+    {
+      "id": 11,
+      "title": "Imilchil",
+      "subtitle": "Lacs Isli & Tislit",
+      "slug": "imilchil",
+      "dates": [
+        {
+          "label": "11 · 12 · 13 Décembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "01 · 02 · 03 Janvier 2027",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "5 · 6 · 7 Février 2027",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "19 · 20 · 21 Mars 2027",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "3 jours / 2 nuits",
+      "price": "1 500",
+      "currency": "DH",
+      "price_note": "par personne · tout inclus · difficulté 3/5",
+      "description": "Cap sur Imilchil et ses lacs légendaires Isli et Tislit, hauts plateaux de l'Atlas, culture amazighe authentique et paysages grandioses loin des sentiers battus.",
+      "program": [
+        {
+          "day": "Vendredi",
+          "items": [
+            "17h00 : Départ de Rabat (McDonald's Rabat Ville) · 18h15 : Casablanca (Ibis Sidi Maârouf)",
+            "Dîner à Béni Mellal (inclus)",
+            "Arrivée à Imilchil et installation"
+          ]
+        },
+        {
+          "day": "Samedi — Ascension du mont Bab N'Ouayad",
+          "items": [
+            "Petit-déjeuner (inclus)",
+            "Ascension du mont Bab N'Ouayad (2 804 m)",
+            "Photos et célébration au sommet",
+            "Descente vers les lacs Isli et Tislit",
+            "Déjeuner au lac Tislit (inclus)",
+            "Retour à l'hôtel, dîner et animation Ahidous (inclus)"
+          ]
+        },
+        {
+          "day": "Dimanche",
+          "items": [
+            "Petit-déjeuner à l'hôtel (inclus)",
+            "Visite des greniers d'Aoujgal, bâtis il y a plusieurs siècles par les tribus des Aït Abdi",
+            "Balade et méditation face aux paysages de la région",
+            "Déjeuner (inclus)",
+            "Retour vers Casablanca et Rabat"
+          ]
+        }
+      ],
+      "program_note": "Tout inclus. L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/general/IMG-20260519-WA0008.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
+    },
+    {
+      "id": 13,
+      "title": "Sommet Tidghine",
+      "subtitle": "Toit du Rif (2 456 m)",
+      "slug": "tidghine",
+      "dates": [
+        {
+          "label": "18 · 19 · 20 Décembre 2026",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "15 · 16 · 17 Janvier 2027",
+          "spots": "🟢 Places disponibles"
+        },
+        {
+          "label": "26 · 27 · 28 Mars 2027",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "3 jours / 2 nuits",
+      "price": "1 350",
+      "currency": "DH",
+      "price_note": "par personne · difficulté 4/5",
+      "description": "Ascension du Jbel Tidghine, plus haut sommet du Rif : forêts de cèdres majestueux, crêtes panoramiques, villages authentiques et l'immense fierté d'atteindre le toit du Rif entre femmes.",
+      "program": [
+        {
+          "day": "Vendredi — Départ",
+          "items": [
+            "18h00 : Départ de Casablanca — Gare Casa Voyageurs",
+            "19h15 : Départ de Rabat — McDonald's Rabat Ville",
+            "Dîner à El Kamouni, route vers Issaguen",
+            "Arrivée et nuit au gîte chez l'habitant"
+          ]
+        },
+        {
+          "day": "Samedi — Ascension du Tidghine",
+          "items": [
+            "Petit-déjeuner puis départ pour la randonnée",
+            "Montée au rythme du groupe avec plusieurs pauses",
+            "Arrivée au sommet : photos et vue imprenable sur le Rif",
+            "Déjeuner au sommet puis descente en groupe",
+            "Goûter, jeux, dîner et animation au gîte"
+          ]
+        },
+        {
+          "day": "Dimanche",
+          "items": [
+            "Petit-déjeuner puis visite du village d’Issaguen",
+            "Déjeuner au gîte",
+            "Retour vers Rabat et Casablanca"
+          ]
+        }
+      ],
+      "program_note": "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/tidghine/01.jpg",
+        "images/tidghine/03.jpg",
+        "images/tidghine/05.jpg",
+        "images/tidghine/07.jpg",
+        "images/tidghine/09.jpg",
+        "images/tidghine/11.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
+    },
+    {
+      "id": 14,
+      "dates": [],
+      "currency": "DH",
+      "whatsapp": "212782282073",
+      "visible": true,
+      "program_note": "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "title": "Chefchaouen & Akchour",
+      "subtitle": "La perle bleue & les cascades",
+      "slug": "chefchaouen-akchour",
+      "duration": "2 jours / 1 nuit",
+      "price": "1 450",
+      "price_note": "par personne · tout inclus · randonnée 2h, difficulté 2/5",
+      "description": "Week-end tout inclus entre la ville bleue de Chefchaouen et les cascades d’Akchour : médina, produits locaux, soirée folklorique des Chaouniyat et randonnée jusqu’au Pont de Dieu.",
+      "program": [
+        {
+          "day": "Samedi — Chefchaouen",
+          "items": [
+            "6h30 : Départ de Casablanca (Ibis Sidi Maârouf) · 7h30 : Rabat (McDonald's Rabat Ville)",
+            "Petit-déjeuner à Ouazzane (inclus)",
+            "Arrivée à l'hôtel, distribution des chambres et déjeuner (inclus)",
+            "Sortie guidée dans Chefchaouen et achat de produits locaux",
+            "Dîner (inclus) et soirée privée animée par les Chaouniyat (incluse)"
+          ]
+        },
+        {
+          "day": "Dimanche — Akchour",
+          "items": [
+            "8h00 : Petit-déjeuner (inclus)",
+            "Départ en minibus vers Akchour",
+            "Randonnée vers les cascades d'Akchour et le Pont de Dieu (incluse)",
+            "Déjeuner au bord de l'eau face aux montagnes (inclus)",
+            "Retour vers Rabat"
+          ]
+        }
+      ],
+      "images": [
+        "images/chefchaouen/IMG-20260526-WA0112.jpg",
+        "images/chefchaouen/IMG-20260526-WA0085.jpg",
+        "images/chefchaouen/IMG-20260526-WA0107.jpg",
+        "images/chefchaouen/IMG-20260526-WA0110.jpg",
+        "images/chefchaouen/IMG-20260526-WA0115.jpg"
+      ],
+      "type": "voyage"
+    },
+    {
+      "id": 15,
+      "dates": [],
+      "currency": "DH",
+      "whatsapp": "212782282073",
+      "visible": true,
+      "program_note": "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "title": "Mgdaz & Amgis",
+      "subtitle": "Cœur amazigh de l’Atlas",
+      "slug": "mgdaz",
+      "duration": "2 jours / 2 nuits",
+      "price": "",
+      "price_note": "prix communiqué à la réservation",
+      "description": "Deux jours au cœur de Mgdaz & Amgis : nature, hiking et culture amazighe. Kasbahs, cascade d’Ougne, soirée Ahwash et immersion dans la vie rurale à Azzib Amgis.",
+      "program": [
+        {
+          "day": "Vendredi — Départ",
+          "items": [
+            "17h00 : Départ de Rabat (Gare Rabat Ville) · 18h30 : Casablanca (Gare Casa Voyageurs)",
+            "20h30 : Dîner à Béni Mellal",
+            "Arrivée et installation à la maison d'hôtes"
+          ]
+        },
+        {
+          "day": "Samedi — Découverte amazighe",
+          "items": [
+            "Accueil autour d’un thé et de dattes, petit-déjeuner amazigh",
+            "Visite de l'ancien douar Mgdaz : architecture, kasbahs et histoire",
+            "Déjeuner traditionnel : tajine et pain cuit au four",
+            "Promenade vers la cascade d'Ougne, pause thé amazigh",
+            "Dîner chaud et soirée amazighe : Ahwash et contes traditionnels"
+          ]
+        },
+        {
+          "day": "Dimanche — Vie rurale à Amgis",
+          "items": [
+            "Randonnée vers Azzib Amgis (environ 1h30)",
+            "Accueil par les agriculteurs locaux, découverte des azzibs et des troupeaux",
+            "Thé en plein air et détente sous les arbres",
+            "Déjeuner rural traditionnel",
+            "Retour : arrivée à Casablanca vers 18h30 et Rabat vers 19h30–20h00"
+          ]
+        }
+      ],
+      "images": [
+        "images/magdaz/01.jpg",
+        "images/magdaz/02.jpg",
+        "images/magdaz/03.jpg"
+      ],
+      "type": "voyage"
+    },
+    {
+      "id": 16,
+      "dates": [],
+      "currency": "DH",
+      "whatsapp": "212782282073",
+      "visible": true,
+      "program_note": "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "title": "Randonnée au Barrage El Ganzera",
+      "subtitle": "Sortie journée",
+      "slug": "barrage-ganzera",
+      "duration": "1 journée",
+      "price": "500",
+      "price_note": "par personne · tout inclus",
+      "description": "Une journée nature au barrage El Ganzera : Rfissa au poulet beldi, animation folklorique Ahwach privée, tours en barque et goûter face au paysage.",
+      "program": [
+        {
+          "day": "Programme de la journée",
+          "items": [
+            "8h30 : Rassemblement devant l'hôtel Ibis Sidi Maârouf",
+            "9h00 : Départ de Casablanca (environ 3h de route)",
+            "12h30 : Arrivée au barrage El Ganzera",
+            "Déjeuner traditionnel : Rfissa au poulet beldi",
+            "Animation folklorique privée par un groupe Ahwach de la région",
+            "Tours en barque sur le barrage",
+            "Goûter en fin d'après-midi face au paysage",
+            "18h00 : Départ en direction de Rabat"
+          ]
+        }
+      ],
+      "images": [
+        "images/barrage-ganzera/01.jpg",
+        "images/barrage-ganzera/02.jpg",
+        "images/barrage-ganzera/03.jpg"
+      ],
+      "type": "sortie"
+    },
+    {
+      "id": 17,
+      "dates": [],
+      "currency": "DH",
+      "whatsapp": "212782282073",
+      "visible": true,
+      "program_note": "Le prix comprend : transport, animation, encadrement, vol en parapente et vidéo de votre vol. L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "title": "Parapente",
+      "subtitle": "Sensations fortes · souvenirs à vie",
+      "slug": "parapente",
+      "duration": "Demi-journée",
+      "price": "500",
+      "price_note": "par personne · tout inclus",
+      "description": "Ce n'est pas juste un vol… c'est une sensation de liberté que tu n'oublieras jamais ! Vol en parapente avec moniteurs certifiés, vidéo GoPro incluse.",
+      "program": [
+        {
+          "day": "Programme",
+          "items": [
+            "14h00 : Départ devant McDonald's Rabat Ville",
+            "Route vers le site de décollage (environ 1h de Rabat)",
+            "Consignes de sécurité avant les vols",
+            "Vol en parapente avec moniteurs certifiés (10 à 15 minutes par personne)",
+            "Photos et vidéos avec caméra GoPro HD",
+            "Atterrissage, célébration et retour à Rabat"
+          ]
+        }
+      ],
+      "images": [
+        "images/parapente/IMG-20260526-WA0153.jpg",
+        "images/parapente/IMG-20260526-WA0151.jpg",
+        "images/parapente/IMG-20260526-WA0154.jpg"
+      ],
+      "type": "activite"
+    },
+    {
+      "id": 18,
+      "dates": [],
+      "currency": "DH",
+      "whatsapp": "212782282073",
+      "visible": true,
+      "program_note": "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "title": "Fahs Lamhar",
+      "subtitle": "Randonnée & ferme dans le nord",
+      "slug": "fahs",
+      "duration": "2 jours / 2 nuits",
+      "price": "1 500",
+      "price_note": "par personne",
+      "description": "Week-end nature et convivialité à Fahs Lamhar : randonnée vers le sommet avec chevaux en liberté, expérience à la ferme et moments de partage.",
+      "program": [
+        {
+          "day": "Vendredi",
+          "items": [
+            "17h00 : Départ de Casablanca · 18h30 : Rabat",
+            "Dîner sur la route (inclus)",
+            "22h00 : Départ de Tétouan, arrivée à l'hôtel et installation"
+          ]
+        },
+        {
+          "day": "Samedi — Randonnée & ascension",
+          "items": [
+            "Petit-déjeuner à l'hôtel (inclus) et distribution des pique-niques",
+            "Randonnée en groupe à un rythme adapté",
+            "Observation des chevaux en liberté",
+            "Pause photos et déjeuner au sommet",
+            "Poursuite vers le sommet de Fahs Lamhar puis descente en douceur",
+            "Dîner convivial (inclus)"
+          ]
+        },
+        {
+          "day": "Dimanche — Expérience à la ferme",
+          "items": [
+            "Petit-déjeuner (inclus)",
+            "Expérience à la ferme, moments de partage et déjeuner",
+            "Activité quad (optionnelle — non incluse)",
+            "Retour vers Tétouan, Rabat et Casablanca"
+          ]
+        }
+      ],
+      "images": [
+        "images/fahs/IMG-20260526-WA0049.jpg",
+        "images/fahs/IMG-20260526-WA0055.jpg",
+        "images/fahs/IMG-20260526-WA0057.jpg",
+        "images/fahs/IMG-20260526-WA0060.jpg"
+      ],
+      "type": "voyage"
+    },
+    {
+      "id": 4,
+      "title": "Essaouira",
+      "subtitle": "Cité des Alizés",
+      "slug": "essaouira",
+      "dates": [
+        {
+          "label": "26 · 27 · 28 Juin 2026",
+          "spots": "🟢 Places disponibles"
+        }
+      ],
+      "duration": "3 jours / 2 nuits",
+      "price": "1 570",
+      "currency": "DH",
+      "price_note": "par personne · tout compris",
+      "description": "Un week-end au cœur de la musique Gnawa : une immersion authentique, vibrante et inspirante entre culture, rencontres et bien-être, pendant le Festival Gnawa d'Essaouira.",
+      "program": [
+        {
+          "day": "Vendredi",
+          "items": [
+            "Départ de Rabat à 10h (Gare Rabat ville), Casablanca 11h10 (Ibis Sidi Maarouf)",
+            "Route vers Essaouira",
+            "Déjeuner (inclus)",
+            "Arrivée à la villa et distribution des chambres",
+            "Repos puis baignade à la plage",
+            "Dîner (non inclus)",
+            "Entrée en groupe au festival"
+          ]
+        },
+        {
+          "day": "Samedi",
+          "items": [
+            "Petit déjeuner",
+            "Sortie Quad en groupe (en option)",
+            "Déjeuner (inclus)",
+            "Retour et repos à la villa",
+            "Sortie cheval en groupe pour le coucher de soleil (en option)",
+            "Dîner (non inclus)",
+            "Entrée en groupe au Festival"
+          ]
+        },
+        {
+          "day": "Dimanche",
+          "items": [
+            "Petit déjeuner",
+            "Sortie à la ville d'Essaouira pour l'achat de souvenirs, pause café",
+            "Déjeuner en groupe (inclus)",
+            "Retour à Casablanca et Rabat"
+          ]
+        }
+      ],
+      "program_note": "Le prix comprend : hébergement, transport, déjeuners (inclus), activités au programme. Non inclus : dîners et activités en option. L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant.",
+      "images": [
+        "images/essaouira/01.jpg",
+        "images/essaouira/02.jpg",
+        "images/essaouira/03.jpg",
+        "images/essaouira/04.jpg",
+        "images/essaouira/05.jpg",
+        "images/essaouira/06.jpg"
+      ],
+      "whatsapp": "212782282073",
+      "visible": true,
+      "type": "voyage"
+    }
   ],
   "contact": {
-    "whatsapp": "212600000000",
+    "whatsapp": "212782282073",
     "instagram": "travel_with_oumaima",
     "facebook": "",
     "tiktok": "",
@@ -100,5 +829,130 @@
   "seo": {
     "title": "Travel with Oumaima — Expériences 100% Féminines au Maroc",
     "description": "Des voyages organisés 100% femmes au Maroc. Sorties journée, randonnées, bivouac, parapente."
-  }
+  },
+  "site": {
+    "logo": "",
+    "hero_image": ""
+  },
+  "texts": {
+    "exp-title": ""
+  },
+  "faq": [
+    {
+      "q": "Comment réserver une sortie ou un voyage ?",
+      "a": "La réservation se fait directement via WhatsApp au +212 782 282 073. Cliquez sur « Réserver » depuis la fiche du voyage qui vous intéresse : le message est pré-rempli avec la destination et la date choisies. Nous vous confirmons la disponibilité et les modalités de paiement."
+    },
+    {
+      "q": "Les voyages sont-ils vraiment 100% femmes ?",
+      "a": "Oui. Toutes nos participantes sont des femmes, et l'encadrement est pensé pour garantir un cadre sûr et bienveillant. C'est notre signature et notre engagement depuis le premier jour."
+    },
+    {
+      "q": "Que comprend le prix ?",
+      "a": "Selon le voyage : le transport depuis Rabat/Casablanca, l'hébergement, les repas indiqués (généralement les déjeuners) et les activités au programme. Les dîners et activités en option (quad, cheval, plongée…) sont précisés sur chaque fiche. Le détail exact figure dans le programme de chaque sortie."
+    },
+    {
+      "q": "Faut-il un bon niveau sportif ?",
+      "a": "Non. La plupart de nos sorties sont accessibles à toutes. Pour les treks exigeants (comme le Toubkal), le niveau requis est toujours indiqué et une préparation est conseillée. En cas de doute, écrivez-nous : nous vous orienterons vers la sortie qui vous convient."
+    },
+    {
+      "q": "D'où partent les voyages ?",
+      "a": "Les départs se font généralement de Rabat (gare Rabat Ville) et de Casablanca (Ibis Sidi Maarouf). Les horaires exacts sont communiqués à la réservation et rappelés dans le groupe WhatsApp du voyage."
+    },
+    {
+      "q": "Puis-je annuler ou reporter ma réservation ?",
+      "a": "Les réservations ne sont pas remboursables. En cas d'empêchement, contactez-nous au plus tôt via WhatsApp : selon les cas, un report de votre réservation sur une prochaine date peut être proposé. À noter : l'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant — dans ce cas, votre réservation est automatiquement reportée à la date suivante."
+    },
+    {
+      "q": "Des photos sont-elles prises pendant les sorties ?",
+      "a": "Oui — des photos et vidéos sont prises lors de nos voyages et sorties, et peuvent être partagées sur les réseaux sociaux de Travel with Oumaima (Instagram, etc.) pour faire vivre la communauté. Si vous ne souhaitez pas apparaître sur ces publications, il vous suffit de nous le signaler avant le départ : votre choix sera pleinement respecté."
+    },
+    {
+      "q": "Que dois-je apporter ?",
+      "a": "Une liste d'affaires personnalisée est envoyée avant chaque départ : chaussures adaptées, protection solaire, maillot, sac à dos de journée… Tout le matériel technique spécifique (bivouac, encadrement plongée ou parapente) est fourni par nos partenaires."
+    },
+    {
+      "q": "Je voyage seule, est-ce un problème ?",
+      "a": "Au contraire ! La majorité de nos participantes viennent seules et repartent avec de nouvelles amies. L'ambiance de groupe et la sororité font partie de l'expérience Travel with Oumaima."
+    }
+  ],
+  "apropos": {
+    "intro": "Travel with Oumaima, c'est bien plus qu'une agence de voyages : c'est une communauté de femmes qui osent explorer le Maroc autrement. Nées d'une passion pour la nature et la randonnée — « When Nature Meets Transformation » — nos sorties sont conçues par des femmes, pour des femmes.",
+    "quote": "Voyager, c'est se retrouver. Chaque sortie est une occasion de ralentir, de créer des liens profonds et de vivre une véritable transformation personnelle dans un cadre sécurisé et bienveillant.",
+    "sections": [
+      {
+        "title": "Notre mission",
+        "body": "Offrir à chaque femme un espace de liberté, de sororité et de reconnexion à soi. Voyager ne devrait jamais être une source d'inquiétude : nos groupes 100% féminins, nos guides de confiance et notre organisation clé en main vous permettent de vivre l'instant, tout simplement."
+      },
+      {
+        "title": "Ce que nous proposons",
+        "body": "Des voyages organisés de plusieurs jours (Essaouira, Merzouga, circuits côtiers…), des sorties d'une journée (Chefchaouen, Ouirgane, barrages…) et des activités d'aventure : randonnée, trek du Toubkal, parapente, kayak, plongée, bivouac sous les étoiles."
+      },
+      {
+        "title": "Pourquoi 100% femmes ?",
+        "body": "Parce que voyager entre femmes crée une énergie unique : bienveillance, entraide, complicité. Nos participantes repartent avec des amitiés durables et une confiance renouvelée. Transport, hébergement, repas et activités sont pris en charge — vous n'avez qu'à profiter."
+      }
+    ],
+    "stats": [
+      {
+        "num": "200+",
+        "label": "Aventurières"
+      },
+      {
+        "num": "15",
+        "label": "Destinations"
+      },
+      {
+        "num": "100%",
+        "label": "Women Only"
+      }
+    ]
+  },
+  "mentions": [
+    {
+      "title": "1. Propriété intellectuelle",
+      "body": "L'ensemble des contenus présents sur ce site (textes, photographies, vidéos, logo, identité visuelle) est la propriété exclusive de Travel with Oumaima, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite."
+    },
+    {
+      "title": "2. Réservations et prestations",
+      "body": "Les réservations s'effectuent via WhatsApp. Les prix, dates et programmes affichés sont donnés à titre indicatif et peuvent être ajustés ; les conditions définitives (tarif, inclus/non inclus, conditions d'annulation) sont confirmées par écrit lors de la réservation.",
+      "list": [
+        "Les places sont limitées et confirmées après versement de l'acompte demandé.",
+        "L'agence se réserve le droit de reporter le voyage en cas d'effectif insuffisant ; les participantes sont alors reportées sur la date suivante.",
+        "Les réservations ne sont pas remboursables ; selon les cas, un report sur une prochaine date peut être proposé.",
+        "Des photos et vidéos sont prises pendant les voyages et sorties et peuvent être publiées sur les réseaux sociaux de Travel with Oumaima. Toute participante ne souhaitant pas apparaître doit le signaler à l'agence avant le départ.",
+        "Les activités en option (quad, cheval, plongée, parapente…) sont opérées par des prestataires partenaires assurés.",
+        "Chaque participante doit être en condition de santé compatible avec les activités choisies."
+      ]
+    },
+    {
+      "title": "3. Données personnelles",
+      "body": "Les informations transmises lors de la réservation (nom, téléphone, e-mail) sont utilisées uniquement pour l'organisation des voyages et ne sont jamais cédées à des tiers à des fins commerciales. Conformément à la loi n° 09-08 relative à la protection des données à caractère personnel au Maroc, vous disposez d'un droit d'accès, de rectification et de suppression de vos données en écrivant à contact@travelwithoumaima.ma."
+    },
+    {
+      "title": "4. Cookies",
+      "body": "Ce site n'utilise pas de cookies de suivi publicitaire. Seuls des cookies techniques strictement nécessaires au fonctionnement du site peuvent être déposés."
+    },
+    {
+      "title": "5. Responsabilité",
+      "body": "Travel with Oumaima s'efforce d'assurer l'exactitude et la mise à jour des informations publiées sur ce site. Nos canaux officiels de contact et de réservation sont le WhatsApp +212 782 282 073 et le compte Instagram @travel_with_oumaima : les échanges qui y sont menés engagent Travel with Oumaima au même titre que le site. En cas d'erreur ou d'information obsolète, contactez-nous et nous corrigerons dans les meilleurs délais."
+    }
+  ],
+  "stats": [
+    {
+      "num": "5",
+      "label": "Années d'expérience"
+    },
+    {
+      "num": "200+",
+      "label": "Aventurières"
+    },
+    {
+      "num": "15",
+      "label": "Destinations"
+    },
+    {
+      "num": "100%",
+      "label": "Women Only"
+    }
+  ]
 }

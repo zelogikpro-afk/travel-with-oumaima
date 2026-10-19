@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "travel-with-oumaima",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "site", "-p", "8765", "--no-clipboard"],
+      "port": 8765
+    }
+  ]
+}

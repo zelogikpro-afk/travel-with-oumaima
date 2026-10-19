@@ -1,5 +1,5 @@
 /* ============================================================
-   TRAVEL WITH OUMAIMA — GSAP Cinematic Animations
+   TRAVEL WITH OUMAIMA — GSAP + Three.js 3D Animations
    ============================================================ */
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,117 +25,153 @@ document.querySelectorAll('a, button, .dep-card, .dest-card, .vtesti-slide').for
   el.addEventListener('mouseleave', () => ring.classList.remove('grow'));
 });
 
-/* ── HERO CINÉMATIQUE ─────────────────────────────────────── */
-window.addEventListener('load', () => {
-  const tl = gsap.timeline({ delay: 2 });
+/* ── VANILLA TILT 3D CARDS ───────────────────────────────── */
+function initTilt() {
+  if (typeof VanillaTilt === 'undefined') return;
 
-  tl.from('.hero-badge', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' })
-    .from('.hero-title', {
-      y: 60, opacity: 0, duration: 1.1, ease: 'power3.out',
-      stagger: 0.12
-    }, '-=0.4')
-    .from('.hero-subtitle-text', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-    .from('.hero-ctas a', { y: 25, opacity: 0, duration: 0.6, stagger: 0.15, ease: 'back.out(1.7)' }, '-=0.4')
-    .from('.hero-scroll-hint', { opacity: 0, duration: 0.5 }, '-=0.2');
+  VanillaTilt.init(document.querySelectorAll('.dest-card'), {
+    max: 14, speed: 600, glare: true, 'max-glare': 0.18,
+    perspective: 900, scale: 1.05, gyroscope: true,
+  });
+
+  VanillaTilt.init(document.querySelectorAll('.dep-card'), {
+    max: 8, speed: 500, glare: true, 'max-glare': 0.12,
+    perspective: 1000, scale: 1.03, gyroscope: true,
+  });
+}
+
+/* ── HERO CINÉMATIQUE 3D ─────────────────────────────────── */
+window.addEventListener('load', () => {
+  initTilt();
+
+  const tl = gsap.timeline({ delay: 0.8 });
+  gsap.set(['.hero-badge', '.hero-title', '.hero-subtitle-text', '.hero-ctas a', '.hero-scroll-hint'], {
+    transformPerspective: 900
+  });
+
+  tl.from('.hero-badge', {
+    y: 40, rotationX: 40, opacity: 0, duration: 0.9, ease: 'power3.out'
+  })
+  .from('.hero-title', {
+    y: 80, rotationX: 50, opacity: 0, duration: 1.2,
+    stagger: 0.14, ease: 'power3.out', transformOrigin: 'center bottom'
+  }, '-=0.5')
+  .from('.hero-subtitle-text', {
+    y: 30, rotationX: 25, opacity: 0, duration: 0.8, ease: 'power2.out'
+  }, '-=0.6')
+  .from('.hero-ctas a', {
+    y: 35, rotationX: 20, opacity: 0, scale: 0.88,
+    duration: 0.7, stagger: 0.15, ease: 'back.out(1.7)'
+  }, '-=0.5')
+  .from('.hero-scroll-hint', { opacity: 0, duration: 0.5 }, '-=0.2');
 });
 
-/* ── SECTION HEADERS — texte révélé par lignes ───────────── */
+/* ── SECTION HEADERS 3D ──────────────────────────────────── */
 document.querySelectorAll('.t-script, .t-title, .t-body').forEach(el => {
+  gsap.set(el, { transformPerspective: 800 });
   gsap.from(el, {
     scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    y: 48, opacity: 0, duration: 0.9,
-    ease: 'power3.out',
+    y: 55, rotationX: el.classList.contains('t-title') ? 35 : 20,
+    opacity: 0, duration: 1.0, ease: 'power3.out',
+    transformOrigin: 'center bottom',
     delay: el.classList.contains('t-title') ? 0.1 : el.classList.contains('t-body') ? 0.2 : 0
   });
 });
 
-/* ── DEPARTURE CARDS ─────────────────────────────────────── */
+/* ── DEPARTURE CARDS 3D ──────────────────────────────────── */
 ScrollTrigger.batch('.dep-card', {
-  start: 'top 85%',
-  once: true,
+  start: 'top 85%', once: true,
   onEnter: els => gsap.from(els, {
-    y: 80, opacity: 0, scale: 0.94,
-    duration: 0.9, stagger: 0.12,
-    ease: 'power3.out'
+    y: 90, rotationX: 25, rotationY: -8, opacity: 0, scale: 0.92,
+    duration: 1.0, stagger: 0.14, ease: 'power3.out',
+    transformPerspective: 900, transformOrigin: 'center bottom',
+    clearProps: 'all',
   })
 });
 
-/* ── DESTINATION CARDS ───────────────────────────────────── */
+/* ── DESTINATION CARDS 3D ────────────────────────────────── */
 ScrollTrigger.batch('.dest-card', {
-  start: 'top 85%',
-  once: true,
-  onEnter: els => gsap.from(els, {
-    y: 60, opacity: 0, scale: 0.96,
-    duration: 0.8, stagger: 0.08,
-    ease: 'power2.out'
-  })
+  start: 'top 85%', once: true,
+  onEnter: els => {
+    gsap.from(els, {
+      y: 70, rotationX: 20,
+      rotationY: (i) => (i % 2 === 0 ? -10 : 10),
+      opacity: 0, scale: 0.94,
+      duration: 0.9, stagger: 0.09, ease: 'power2.out',
+      transformPerspective: 900, transformOrigin: 'center bottom',
+      clearProps: 'all',
+    });
+  }
 });
 
-/* ── WHY STRIP — items cascade ───────────────────────────── */
+/* ── WHY STRIP 3D ────────────────────────────────────────── */
 ScrollTrigger.batch('.why-item', {
-  start: 'top 88%',
-  once: true,
+  start: 'top 88%', once: true,
   onEnter: els => gsap.from(els, {
-    y: 40, opacity: 0,
-    duration: 0.7, stagger: 0.1,
-    ease: 'power2.out'
+    y: 50, rotationY: 20, opacity: 0,
+    duration: 0.8, stagger: 0.1, ease: 'power2.out',
+    transformPerspective: 700
   })
 });
 
-/* ── PHILOSOPHY STATS — compteur animé ──────────────────── */
+/* ── PHILOSOPHY STATS ────────────────────────────────────── */
 document.querySelectorAll('.phil-stat').forEach(stat => {
-  const numEl = stat.querySelector('[id^="phil-stat"]');
-  if (!numEl) return;
+  gsap.set(stat, { transformPerspective: 600 });
   gsap.from(stat, {
     scrollTrigger: { trigger: stat, start: 'top 85%', once: true },
-    scale: 0.8, opacity: 0, duration: 0.7,
-    ease: 'back.out(1.5)'
+    scale: 0.7, rotationX: 40, opacity: 0,
+    duration: 0.8, ease: 'back.out(1.8)', transformOrigin: 'center center'
   });
 });
 
-/* ── COMMUNITY SECTION — parallax image ─────────────────── */
+/* ── COMMUNITY PARALLAX 3D ───────────────────────────────── */
 const commBg = document.querySelector('.community-bg img');
 if (commBg) {
   gsap.to(commBg, {
     scrollTrigger: { trigger: '#community', start: 'top bottom', end: 'bottom top', scrub: true },
-    y: -80, ease: 'none'
+    y: -100, scale: 1.1, ease: 'none'
   });
 }
 
 /* ── VIDEO TESTIMONIALS ──────────────────────────────────── */
 gsap.from('#video-testimonials .section-header > *', {
   scrollTrigger: { trigger: '#video-testimonials', start: 'top 80%', once: true },
-  y: 40, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power2.out'
+  y: 50, rotationX: 30, opacity: 0, stagger: 0.15,
+  duration: 0.9, ease: 'power2.out', transformPerspective: 800
 });
 
-/* ── NEWSLETTER — scale in ───────────────────────────────── */
+/* ── NEWSLETTER ──────────────────────────────────────────── */
 gsap.from('#newsletter .container > *', {
   scrollTrigger: { trigger: '#newsletter', start: 'top 80%', once: true },
-  y: 50, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out'
+  y: 60, rotationX: 25, opacity: 0, stagger: 0.12,
+  duration: 0.9, ease: 'power3.out', transformPerspective: 800
 });
 
-/* ── FOOTER LINKS ────────────────────────────────────────── */
+/* ── FOOTER ──────────────────────────────────────────────── */
 gsap.from('footer .footer-col', {
   scrollTrigger: { trigger: 'footer', start: 'top 90%', once: true },
-  y: 30, opacity: 0, stagger: 0.1, duration: 0.6, ease: 'power2.out'
+  y: 40, rotationY: 15, opacity: 0, stagger: 0.1,
+  duration: 0.7, ease: 'power2.out', transformPerspective: 700
 });
 
-/* ── MAGNETIC BUTTONS ────────────────────────────────────── */
+/* ── MAGNETIC BUTTONS 3D ─────────────────────────────────── */
 document.querySelectorAll('.btn-primary-hero, .btn-ghost-hero, .dep-reserve-btn').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width / 2;
+    const x = e.clientX - r.left - r.width  / 2;
     const y = e.clientY - r.top  - r.height / 2;
-    gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: 'power2.out' });
+    gsap.to(btn, {
+      x: x * 0.35, y: y * 0.35,
+      rotationY: x * 0.05, rotationX: -y * 0.05,
+      duration: 0.3, ease: 'power2.out', transformPerspective: 600
+    });
   });
   btn.addEventListener('mouseleave', () => {
-    gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+    gsap.to(btn, { x: 0, y: 0, rotationY: 0, rotationX: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
   });
 });
 
-/* ── HORIZONTAL SCROLL HINT ──────────────────────────────── */
+/* ── SCROLL HINT BOUNCE ──────────────────────────────────── */
 gsap.to('.hero-scroll-hint', {
-  y: 10, duration: 1.2,
-  repeat: -1, yoyo: true,
-  ease: 'power1.inOut'
+  y: 12, duration: 1.3, repeat: -1, yoyo: true, ease: 'power1.inOut'
 });

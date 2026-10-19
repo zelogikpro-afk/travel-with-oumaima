@@ -106,7 +106,10 @@ http.createServer(async (req, res) => {
 
   // ── STATIC FILES ───────────────────────────────────────────
   let filePath;
-  if (urlPath === '/' || urlPath === '/site' || urlPath === '/site/') {
+  if (urlPath === '/' || urlPath === '/site') {
+    res.writeHead(302, { Location: '/site/' });
+    return res.end();
+  } else if (urlPath === '/site/') {
     filePath = path.join(ROOT, 'site', 'index.html');
   } else {
     filePath = path.join(ROOT, urlPath);

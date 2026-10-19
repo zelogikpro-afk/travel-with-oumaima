@@ -1,0 +1,7 @@
+name = "travelwithoumaima"
+compatibility_date = "2026-07-01"
+pages_build_output_dir = "site"
+
+[[kv_namespaces]]
+binding = "SITE_KV"
+id = "4d01e36a362443648656fd4a4ffb0d6f"

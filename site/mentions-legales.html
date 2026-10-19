@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentions légales — Travel with Oumaima</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1792372072071">
+  <style>
+    .page-hero { padding: 140px 20px 80px; text-align: center; background: var(--forest); }
+    .page-hero .t-script { color: var(--copper-light); }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; color: #fff; }
+    .page-body { max-width: 780px; margin: 0 auto; padding: 70px 24px 90px; }
+    .page-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--forest); margin: 36px 0 10px; }
+    .page-body p, .page-body li { font-size: .88rem; line-height: 1.85; color: #55605a; font-weight: 300; margin-bottom: 10px; }
+    .page-body ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+
+<nav id="navbar" class="nav-solid" style="position:sticky;top:0;">
+  <div class="nav-logo"><a href="index.html"><img src="images/logo/3.png" alt="Travel with Oumaima" style="height:52px;"></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="index.html#experiences">Expériences</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="index.html#departures">Départs</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://wa.me/212782282073" class="btn-outline" target="_blank">Réserver via WhatsApp</a>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <span class="mobile-close" id="mobile-close">&times;</span>
+  <a href="index.html">Accueil</a>
+  <a href="index.html#experiences">Expériences</a>
+  <a href="destinations.html">Destinations</a>
+  <a href="index.html#departures">Départs</a>
+  <a href="a-propos.html">À propos</a>
+  <a href="faq.html">FAQ</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<div class="page-hero">
+  <span class="t-script">Informations</span>
+  <h1>Mentions légales</h1>
+</div>
+
+<div class="page-body" id="mentions-content">
+  <h2>1. Propriété intellectuelle</h2>
+  <p>L'ensemble des contenus présents sur ce site est la propriété exclusive de Travel with Oumaima, sauf mention contraire.</p>
+</div>
+
+<script>
+function escMl(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+(function loadMentions() {
+  fetch('/api/content?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(c) {
+    if (!c || !Array.isArray(c.mentions) || !c.mentions.length) return;
+    document.getElementById('mentions-content').innerHTML = c.mentions.map(function(s) {
+      var html = '<h2>' + escMl(s.title) + '</h2><p>' + escMl(s.body) + '</p>';
+      if (Array.isArray(s.list) && s.list.length) {
+        html += '<ul>' + s.list.map(function(li){ return '<li>' + escMl(li) + '</li>'; }).join('') + '</ul>';
+      }
+      return html;
+    }).join('');
+  }).catch(function(){});
+})();
+</script>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="justify-content:center;">
+      <span>© 2026 Travel with Oumaima · <a href="index.html" style="color:var(--copper);">Accueil</a> · <a href="a-propos.html" style="color:var(--copper);">À propos</a> · <a href="faq.html" style="color:var(--copper);">FAQ</a></span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  var h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),c=document.getElementById('mobile-close');
+  if(h&&m)h.addEventListener('click',function(){m.classList.add('open');});
+  if(c&&m)c.addEventListener('click',function(){m.classList.remove('open');});
+  if(m)m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');});});
+})();
+</script>
+</body>
+</html>

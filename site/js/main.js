@@ -3,10 +3,10 @@
    ============================================================ */
 
 /* PAGE LOADER */
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     document.getElementById('loader')?.classList.add('done');
-  }, 1900);
+  }, 700);
 });
 
 /* NAVBAR SCROLL + TOP BAR HIDE */
