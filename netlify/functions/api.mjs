@@ -1,7 +1,5 @@
 import { getStore } from '@netlify/blobs';
 
-const PASSWORD = process.env.ADMIN_PASSWORD || 'oumaima2026';
-
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -9,9 +7,19 @@ function json(data, status = 200) {
   });
 }
 
-function isAuth(req) {
-  const h = req.headers.get('authorization') || '';
-  return h === 'Bearer ' + PASSWORD;
+// Mot de passe : d'abord celui défini par l'admin (blob), sinon la variable
+// d'environnement, sinon la valeur par défaut.
+async function getPwd() {
+  try {
+    const stored = await getStore('site-content').get('admin_password');
+    if (stored && stored.trim()) return stored.trim();
+  } catch { /* ignore */ }
+  return process.env.ADMIN_PASSWORD || 'oumaima2026';
+}
+
+async function isAuth(req) {
+  const pwd = await getPwd();
+  return (req.headers.get('authorization') || '') === 'Bearer ' + pwd;
 }
 
 export default async (req) => {
@@ -22,8 +30,19 @@ export default async (req) => {
   /* ── LOGIN ── */
   if (path === 'login' && req.method === 'POST') {
     const body = await req.json().catch(() => ({}));
-    if (body.password === PASSWORD) return json({ ok: true, token: PASSWORD });
+    const pwd = await getPwd();
+    if (body.password === pwd) return json({ ok: true, token: pwd });
     return json({ ok: false, error: 'Mot de passe incorrect' }, 401);
+  }
+
+  /* ── CHANGER LE MOT DE PASSE ── */
+  if (path === 'change-password' && req.method === 'POST') {
+    if (!(await isAuth(req))) return json({ error: 'unauthorized' }, 401);
+    const body = await req.json().catch(() => ({}));
+    const np = (body.newPassword || '').trim();
+    if (np.length < 6) return json({ ok: false, error: 'Le mot de passe doit faire au moins 6 caractères' }, 400);
+    await getStore('site-content').set('admin_password', np);
+    return json({ ok: true, token: np });
   }
 
   /* ── CONTENT ── */
@@ -35,7 +54,7 @@ export default async (req) => {
       return json(data);
     }
     if (req.method === 'PUT' || req.method === 'POST') {
-      if (!isAuth(req)) return json({ error: 'unauthorized' }, 401);
+      if (!(await isAuth(req))) return json({ error: 'unauthorized' }, 401);
       const body = await req.json().catch(() => null);
       if (!body || typeof body !== 'object') return json({ error: 'invalid-json' }, 400);
       await store.setJSON('content', body);
@@ -45,7 +64,7 @@ export default async (req) => {
 
   /* ── UPLOAD IMAGE (base64) ── */
   if (path === 'upload' && req.method === 'POST') {
-    if (!isAuth(req)) return json({ error: 'unauthorized' }, 401);
+    if (!(await isAuth(req))) return json({ error: 'unauthorized' }, 401);
     const body = await req.json().catch(() => null);
     if (!body || !body.data || !body.name) return json({ error: 'invalid' }, 400);
     const ext = (body.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -58,7 +77,7 @@ export default async (req) => {
 
   /* ── LIST IMAGES ── */
   if (path === 'images' && req.method === 'GET') {
-    if (!isAuth(req)) return json({ error: 'unauthorized' }, 401);
+    if (!(await isAuth(req))) return json({ error: 'unauthorized' }, 401);
     const store = getStore('site-images');
     const { blobs } = await store.list();
     return json({ images: blobs.map(b => ({ key: b.key, url: '/api/img/' + b.key })) });
@@ -78,7 +97,7 @@ export default async (req) => {
       });
     }
     if (req.method === 'DELETE') {
-      if (!isAuth(req)) return json({ error: 'unauthorized' }, 401);
+      if (!(await isAuth(req))) return json({ error: 'unauthorized' }, 401);
       await store.delete(key);
       return json({ ok: true });
     }
